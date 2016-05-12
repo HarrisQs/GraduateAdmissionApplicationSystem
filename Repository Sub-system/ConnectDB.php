@@ -7,22 +7,29 @@
 		private $stdpass= "software";
 		private $DBlink;
 
-		function ConnectDB()//資料庫連接
+		function __construct()//資料庫連接 建構子
 		{
 			$this->DBlink = @mysql_connect($this->server, $this->stduser, $this->stdpass)
 							or  $this->CatchError("無法連接資料庫,請檢查連線資訊!");
 			mysql_query("SET NAMES 'utf8'");//處理編碼問題
 			mysql_select_db($this->db);
 		}
-		public function DBCommand($SQL)
+		function __destruct()//解構子
+		{
+      		$this->DBClose();
+   		}
+		public function DB_Select($SQL)//DB Select command
 		{		
        		$result = @mysql_db_query($this->db, $SQL) or $this->CatchError("資料庫名稱或指令敘述錯誤!");
-       		if(mysql_num_rows($result) == 0)
+       		if(mysql_num_rows($result) == 0)//有沒有找到資料
        			return false;
        		else
        			return true;
-       		$this->DBClose();
 
+		}
+		public function DB_Update($SQL)//DB Update command
+		{		
+       		$result = @mysql_db_query($this->db, $SQL) or $this->CatchError("資料庫名稱或指令敘述錯誤!");
 		}
 		private function CatchError($Error)//處裡連接資料庫發生的錯誤
 		{
@@ -35,5 +42,6 @@
 		{
 				mysql_close($this->DBlink);
 		}
+
 	}
 ?>
