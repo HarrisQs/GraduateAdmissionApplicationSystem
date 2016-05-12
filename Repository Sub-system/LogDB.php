@@ -7,27 +7,28 @@
 		function __construct()//建構子
 		{
 			$this->DataBase = new ConnectDB();
-			date_default_timezone_set('Asia/Taipei');//設定台北的實區
+			date_default_timezone_set('Asia/Taipei');//設定台北的時區
 		}
 		function __destruct()//解構子
 		{
 
 		}
-		public function SaveLogInLog($account)
+		public function SaveLogInLog($account)//記錄登入的紀錄
 		{
 			$Nowtime = $this -> GetNowTime();
 			$command = "insert INTO log_data (account, HappenedTime, State)
 						VALUES ('$account', '$Nowtime', 'LogIn');";
 			$this->DataBase->DB_Insert($command);
 		}
-		public function SaveLogOutLog($account)
+		public function SaveLogOutLog($account)//記錄登出的紀錄
 		{
 			$Nowtime = $this -> GetNowTime();
 			$command = "insert INTO log_data (account, HappenedTime, State)
 						VALUES ('$account', '$Nowtime', 'LogOut');";
 			$this->DataBase->DB_Insert($command);
+			return true;
 		}
-		public function SaveResetPasswordLog($account)
+		public function SaveResetPasswordLog($account)//記錄重設密碼的紀錄
 		{
 			$Nowtime = $this -> GetNowTime();
 			$command = "insert INTO log_data (account, HappenedTime, State)
