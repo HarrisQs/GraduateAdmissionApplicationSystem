@@ -1,7 +1,7 @@
 <?php
-include "AccountDB.php";
+include "LogDB.php";
 
-$carPart = new AccountDB();
+$carPart = new LogDB();
 
 //$carPart -> AddNewAccount("11112");
 $carPart -> SetNewPassword("11112", "1ddd11");

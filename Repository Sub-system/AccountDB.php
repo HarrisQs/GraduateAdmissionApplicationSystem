@@ -7,7 +7,11 @@
 		function __construct() //建構子 用來連接資料庫
 		{
      		 $this->DataBase = new ConnectDB();
-   		}	
+   		}
+   		function __destruct()
+		{
+
+		}	
 		public function AddNewAccount($account)//註冊帳號
 		{
 			if($this -> IsRepeat($account)) //帳號重複了
