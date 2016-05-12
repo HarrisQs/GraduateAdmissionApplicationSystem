@@ -12,6 +12,6 @@ $carPart = new ConnectDB;
 
 //Call the function with the "->" operator
 //This time with the argument "Black Color"
-$carPart -> Connect();
+$carPart -> DBConnect("123");
 
 ?>
