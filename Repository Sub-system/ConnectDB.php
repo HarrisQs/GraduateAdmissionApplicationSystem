@@ -33,9 +33,10 @@
 		public function DB_SelectString($SQL)//DB Select command
 		{		
        		$result = @mysql_db_query($this->db, $SQL) or $this->CatchError("資料庫名稱或指令敘述錯誤!");
-       		
-       		echo $result;
-
+       		$answer;
+       		while ($row = mysql_fetch_assoc($result))
+       			$answer[] = json_encode($row);
+       		return $answer;
 		}
 		public function DB_Update($SQL)//DB Update command
 		{		
