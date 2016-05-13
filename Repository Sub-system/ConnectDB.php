@@ -1,4 +1,7 @@
 <?php
+//2016/05/12
+//Programmer：張弘瑜
+//負責與資料庫連接的部分
 	class ConnectDB //連接資料庫
 	{
 		private $db  = "repository sub-system";
@@ -18,13 +21,20 @@
 		{
       		$this->DBClose();
    		}
-		public function DB_Select($SQL)//DB Select command
+		public function DB_SelectBool($SQL)//DB Select command
 		{		
        		$result = @mysql_db_query($this->db, $SQL) or $this->CatchError("資料庫名稱或指令敘述錯誤!");
        		if(mysql_num_rows($result) == 0)//有沒有找到資料
        			return false;
        		else
        			return true;
+
+		}
+		public function DB_SelectString($SQL)//DB Select command
+		{		
+       		$result = @mysql_db_query($this->db, $SQL) or $this->CatchError("資料庫名稱或指令敘述錯誤!");
+       		
+       		echo $result;
 
 		}
 		public function DB_Update($SQL)//DB Update command

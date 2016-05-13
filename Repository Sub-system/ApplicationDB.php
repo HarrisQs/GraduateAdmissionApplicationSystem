@@ -1,4 +1,7 @@
 <?php
+//2016/05/13
+//Programmer：張弘瑜
+//負責管理申請書資料庫的部分
 	include_once "ConnectDB.php";
 	class ApplicationDB
 	{
@@ -83,7 +86,8 @@
 		}
 		public function GetLastHistory($account)
 		{
-
+			$command = "Select * from account_data where account='$account'";
+			$this->DataBase->DB_SelectString($command);
 		}
 		public function GetApplcation($school)
 		{

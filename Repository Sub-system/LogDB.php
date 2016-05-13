@@ -1,4 +1,7 @@
 <?php
+//2016/05/12
+//Programmer：張弘瑜
+//負責管理日誌資料庫的部分
 	include_once "ConnectDB.php";
 	class LogDB
 	{

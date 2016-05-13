@@ -1,4 +1,7 @@
 <?php
+//2016/05/12
+//Programmer：張弘瑜
+//負責管理帳號資料庫的部分
 	include_once "ConnectDB.php";
 	include_once "LogDB.php";
 	class AccountDB
@@ -30,7 +33,7 @@
 		public function ValidateAccount($account, $password)//驗證帳號密碼
 		{
 			$command = "select * from account_data where account='$account' And pass='$password'";
-			if($this->DataBase->DB_Select($command))
+			if($this->DataBase->DB_SelectBool($command))
 			{
 				$this->LogDataBase->SaveLogInLog($account);
 				return true;
@@ -46,7 +49,7 @@
 		private function IsRepeat($account)//判斷帳號是否重複
 		{
 			$command = "select * from account_data where account='$account'";
-			return $this->DataBase->DB_Select($command);
+			return $this->DataBase->DB_SelectBool($command);
 		}
 
 	}
