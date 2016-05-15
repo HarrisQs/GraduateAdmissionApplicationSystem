@@ -12,13 +12,14 @@ Programmer：張弘瑜
 		</title>
 	</head>
 	<body>
-		<form name="Upload_Form" method="post" action="UploadRecommendationLetter.php">
-			Student Name : <input type="text" name="Student_Name">
+		<form name="Upload_Form" method="post" enctype="multipart/form-data" action="UploadRecommendationLetter.php">
+			Student Name : <input type="text" name="Student_Name"/>
 			<br>
-			Upload File : <input type="file" name="UFile">
+			Upload File : <input type="file" name="fileToUpload"/>
 			<br>
-			<input type="submit" name="Submit" value="Ok">
-			<input type="reset" name="Reset" value="Reset">
+			<input type="submit" name="Submit" value="Ok"/>
+			<input type="reset" name="Reset" value="Reset"/>
 		</form>
 	</body>
 </html>
+<!-- enctype="multipart/form-data"  代表要上傳檔案-->

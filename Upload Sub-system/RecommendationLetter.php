@@ -2,7 +2,7 @@
 //2016/05/12
 //Programmer：張弘瑜
 //推薦信存到資料庫的部分
-	include_once"../Respository Sub-system/CennectDB.php"
+	include_once"../Repository Sub-system/ApplicationDB.php";
 	class RecommendationLetter
 	{
 		private $DBLink;
@@ -10,7 +10,7 @@
 		private $FileAddress;
 		function __construct()
 		{
-			$this->DBLink = new ConnectDB();
+			$this->DBLink = new ApplicationDB();
 		}
 		function __destruct()
 		{
