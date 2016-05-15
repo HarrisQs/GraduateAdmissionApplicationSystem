@@ -21,7 +21,7 @@
 			reset($currentApplication);
 			for($index = 0; $index < count($currentApplication); $index++)
 			{
-				print("$currentApplication.School $currentApplication.Department <a href='這個學生的資料頁面'>$currentApplication.Name</a> \n");
+				print("$currentApplication[$index].School $currentApplication[$index].Department <a href='這個學生的資料頁面'>$currentApplication[$index].Name</a> \n");
 			}
 		}
 
@@ -32,7 +32,7 @@
 			{
 				if($currentApplication.State == 2)//2代表沒通過
 				{
-					print("$currentApplication.School $currentApplication.Department <a href='這個學生的資料頁面'>$currentApplication.Name</a>\n");
+					print("$currentApplication[$index].School $currentApplication[$index].Department <a href='這個學生的資料頁面'>$currentApplication[$index].Name</a>\n");
 				}
 			}
 		}
@@ -44,7 +44,7 @@
 			{
 				if($currentApplication.State == 0)//0代表還沒審查
 				{
-					print("$currentApplication.School $currentApplication.Department <a href='這個學生的資料頁面'>$currentApplication.Name</a>\n");
+					print("$currentApplication[$index].School $currentApplication[$index].Department <a href='這個學生的資料頁面'>$currentApplication[$index].Name</a>\n");
 				}
 			}
 		}
@@ -56,7 +56,7 @@
 			{
 				if($currentApplication.State == 1)//1代表通過
 				{
-					print("$currentApplication.School $currentApplication.Department <a href='這個學生的資料頁面'>$currentApplication.Name</a>\n");
+					print("$currentApplication[$index].School $currentApplication[$index].Department <a href='這個學生的資料頁面'>$currentApplication[$index].Name</a>\n");
 				}
 			}
 		}
@@ -68,7 +68,7 @@
 
 		private function SendEmailToTeacher($Email)//顯示寄信給推薦教授的連結，用新分頁開啟
 		{
-			<a target="_blank" href="mailto:$Email">寄信給推薦教授</a>
+			print("<a target="_blank" href="mailto:$Email">寄信給推薦教授</a>");
 		}
 	}
 ?>
