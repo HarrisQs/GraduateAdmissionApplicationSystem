@@ -16,7 +16,7 @@
 		}
 		public function Upload()//判斷是否上傳成功
 		{
-			
+			$fname=$_FILES["ufile"]["name"];
 		}
 	}
 
