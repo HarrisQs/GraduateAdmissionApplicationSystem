@@ -14,8 +14,8 @@
 		{
 			$this->DBlink = @mysql_connect($this->server, $this->stduser, $this->stdpass)
 							or  $this->CatchError("無法連接資料庫,請檢查連線資訊!");
-			mysql_query("SET NAMES 'utf8'");//處理編碼問題
 			mysql_select_db($this->db);
+			mysql_query('set names utf8');//處理編碼問題
 		}
 		function __destruct()//解構子
 		{

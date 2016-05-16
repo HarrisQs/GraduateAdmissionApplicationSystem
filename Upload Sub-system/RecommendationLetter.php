@@ -8,6 +8,7 @@
 		private $DBLink;
 		private $FileName;
 		private $FileAddress;
+		private $Account;
 		function __construct()
 		{
 			$this->DBLink = new ApplicationDB();
@@ -16,15 +17,16 @@
 		{
 
 		}
-		public function SaveRecommendationLetter($fileName)//把參數設定好 並且呼叫儲存的
+		public function SaveRecommendationLetter($fileName, $account)//把參數設定好 並且呼叫儲存的
 		{
 			$this->FileName = $fileName;
-			$this->FileAddress = "";
+			$this->FileAddress = "Upload File/".$fileName;
+			$this->Account = $account;
 			while(!$this->SaveToDB()){}//直到成功存入DB為止
 		}
 		public function SaveToDB()//負責來存進資料庫的
 		{
-			if($this->DBLink->SaveRecommendationLetter($this->FileName, $account))
+			if($this->DBLink->SaveRecommendationLetter($this->FileName, $this->Account))
 				return true;
 			else
 				return false;
