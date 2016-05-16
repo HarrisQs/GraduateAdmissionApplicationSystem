@@ -10,11 +10,6 @@
 			$this->State = $State;
 		}
 
-		public function GetApplication($School)
-		{
-			ApplicationDB.GetApplication($School);
-		}
-
 		public function GetTeacherEmail()
 		{
 			return $this->TeacherEmail;
