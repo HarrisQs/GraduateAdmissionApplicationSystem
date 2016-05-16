@@ -1,5 +1,5 @@
 <?php
-	include_once "../Respository Sub-system/ApplicationDB.php"
+	include_once "../Respository Sub-system/ApplicationDB.php";
 	class CurrentApplication
 	{
 		private $TeacherEmail;
