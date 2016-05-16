@@ -15,7 +15,7 @@ Programmer：張弘瑜
 		<form name="Upload_Form" method="post" enctype="multipart/form-data" action="UploadRecommendationLetter.php">
 			Student Name : <input type="text" name="Student_Name"/>
 			<br>
-			Upload File : <input type="file" name="fileToUpload"/>
+			Upload File (File size need less than 5MB): <input type="file" name="fileToUpload"/>
 			<br>
 			<input type="submit" name="Submit" value="Ok"/>
 			<input type="reset" name="Reset" value="Reset"/>
