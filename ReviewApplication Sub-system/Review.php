@@ -1,6 +1,6 @@
 <?php
-	include_once "E:\\xampp\\htdocs\\Web-based-Graduate-Admission-Application-System\\Respository Sub-system\\ConnectDB.php";
-	include_once "E:\\xampp\\htdocs\\Web-based-Graduate-Admission-Application-System\\Respository Sub-system\\ApplicationDB.php";
+	include_once"../Repository Sub-system/ConnectDB.php";// 不能有空白啊柏宏
+	//include_once "../Respository Sub-system/ConnectDB.php";
     $DoReview = new Review;
     $DoReview->Review();
 	

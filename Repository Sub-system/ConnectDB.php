@@ -43,7 +43,7 @@
        		@mysql_db_query($this->db, $SQL) or $this->CatchError("資料庫名稱或指令敘述錯誤!");
 		}
 		public function DB_Insert($SQL)//DB Update command
-		{		
+		{	echo $SQL;
        		@mysql_db_query($this->db, $SQL) or $this->CatchError("資料庫名稱或指令敘述錯誤!");
 		}
 		private function CatchError($Error)//處裡連接資料庫發生的錯誤
