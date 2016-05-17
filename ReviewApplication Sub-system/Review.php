@@ -1,6 +1,7 @@
 <?php
-	include_once"../Repository Sub-system/ConnectDB.php";// 不能有空白啊柏宏
-	//include_once "../Respository Sub-system/ConnectDB.php";
+	include_once"../Repository Sub-system/ConnectDB.php";
+	include_once"../Repository Sub-system/ApplicationDB.php";
+
     $DoReview = new Review;
     $DoReview->Review();
 	
@@ -11,29 +12,41 @@
 		{
 			$connectDB = new ConnectDB();
 			$teacherID = $_POST['TeacherID'];
-			$jsonResult = $connectDB("select School from account_data where account='$teacherID' ");
-			//還沒解碼
+
+			$jsonResult = $connectDB->DB_SelectString("select School from account_data where account='$teacherID' ");
+			foreach($jsonResult as $key => $Value) //將json型態的array轉為php可用的array
+			{
+	    		$jsonResult[$key] = json_decode($Value, true); 
+			}
+			$teacherschool =  $jsonResult[0]["School"];
+
+			$jsonResult = $connectDB->DB_SelectString("select * from application_data where School='$teacherschool' ");
+			foreach($jsonResult as $key => $Value) //將json型態的array轉為php可用的array
+			{
+		    	$jsonResult[$key] = json_decode($Value, true); 
+			}
+			$this->currentApplication = $jsonResult;			
 		}
 		public function Review()
 		{
-			setcookie('application_list',$currentApplication);
+			$alias = serialize($this->currentApplication);
+			$_SESSION['application_list'] = $alias;
+			setcookie('application_list',$alias);
 			switch ($_POST['action']) 
    				{
-				    case 'All':
+				    case 'Show_All':
 				        Review::ShowAllApplication();				        
 				        break;
-				    case 'Failed':
+				    case 'Show_Failed':
 				        Review::ShowReviewFailed();
 				        break;
-				    case 'NotReview':
-				        Review::ShowReviewFailed();
+				    case 'Show_NotReview':
+				        Review::ShowNotReview();
 				        break;
-				    case 'Success':
+				    case 'Show_Success':
 				    	Review::ShowReviewSuccess();
 				    	break;
-				    case 'Test':
-				        Review::test();
-				        break;
+
    				}
 		}
 
@@ -45,30 +58,37 @@
 		private function ShowAllApplication()
 		{
 			session_start();
-			$_SESSION['application_list'] = $currentApplication;
-			for($index = 0; $index < count($currentApplication); $index++)
+			$alias = serialize($this->currentApplication);
+			$_SESSION['application_list'] = $alias;
+			for($index = 0; $index < count($this->currentApplication); $index++)
 			{
-				print_r($currentApplication[$index][3]);//學校
-				echo " ";print_r($currentApplication[$index][4]);//系所
+				echo $this->currentApplication[$index]["School"];//學校
+				echo " ";
+				echo $this->currentApplication[$index]["Department"];//系所
 				echo " <a href='ShowApplication.php?index=$index'>";
-				print_r($currentApplication[$index][2]);
+				echo $this->currentApplication[$index]["Name"];
 				echo "</a>";//顯示學生名字及連結;
+				echo "<br>";
 			}
 		}
 
 		private function ShowReviewFailed()//顯示沒通過審查的申請書
 		{
 			session_start();
-			$_SESSION['application_list'] = $currentApplication;
-			for($index = 0; index < count($currentApplication); $index++)
+			$alias = serialize($this->currentApplication);
+			$_SESSION['application_list'] = $alias;
+			for($index = 0; $index < count($this->currentApplication); $index++)
 			{
-				if($currentApplication[$index][11]== 2)//2代表沒通過
+
+				if($this->currentApplication[$index]["Status"] == 3)//3代表沒通過
 				{
-					print_r($currentApplication[$index][3]);//學校
-					echo " ";print_r($currentApplication[$index][4]);//系所
+					echo $this->currentApplication[$index]["School"];//學校
+					echo " ";
+					echo $this->currentApplication[$index]["Department"];//系所
 					echo " <a href='ShowApplication.php?index=$index'>";
-					print_r($currentApplication[$index][2]);
+					echo $this->currentApplication[$index]["Name"];
 					echo "</a>";//顯示學生名字及連結;
+					echo "<br>";
 				}
 			}
 		}
@@ -76,16 +96,19 @@
 		private function ShowNotReview()//顯示尚未審查的申請書
 		{
 			session_start();
-			$_SESSION['application_list'] = $currentApplication;
-			for($index = 0; index < count($currentApplication); $index++)
+			$alias = serialize($this->currentApplication);
+			$_SESSION['application_list'] = $alias;
+			for($index = 0; $index < count($this->currentApplication); $index++)
 			{
-				if($currentApplication[$index][11]== 0)//0代表還沒審查
+				if($this->currentApplication[$index]["Status"] == 1)//1代表尚未審查
 				{
-					print_r($currentApplication[$index][3]);//學校
-					echo " ";print_r($currentApplication[$index][4]);//系所
+					echo $this->currentApplication[$index]["School"];//學校
+					echo " ";
+					echo $this->currentApplication[$index]["Department"];//系所
 					echo " <a href='ShowApplication.php?index=$index'>";
-					print_r($currentApplication[$index][2]);
+					echo $this->currentApplication[$index]["Name"];
 					echo "</a>";//顯示學生名字及連結;
+					echo "<br>";
 				}
 			}
 		}
@@ -93,40 +116,48 @@
 		private function ShowReviewSuccess()//顯示通過審查的申請書
 		{
 			session_start();
-			$_SESSION['application_list'] = $currentApplication;
-			for($index = 0; index < count($currentApplication); $index++)
+			$alias = serialize($this->currentApplication);
+			$_SESSION['application_list'] = $alias;
+			for($index = 0; $index < count($this->currentApplication); $index++)
 			{
-				if($currentApplication[$index][11]== 1)//1代表通過
+				if($this->currentApplication[$index]["Status"] == 2)//2代表通過
 				{
-					print_r($currentApplication[$index][3]);//學校
-					echo " ";print_r($currentApplication[$index][4]);//系所
+					echo $this->currentApplication[$index]["School"];//學校
+					echo " ";
+					echo $this->currentApplication[$index]["Department"];//系所
 					echo " <a href='ShowApplication.php?index=$index'>";
-					print_r($currentApplication[$index][2]);
+					echo $this->currentApplication[$index]["Name"];
 					echo "</a>";//顯示學生名字及連結;
+					echo "<br>";
 				}
 			}
 		}
 
 		private function ChangeApplicationState($state)//改變狀態
 		{
-			$currentApplication->State = $state;
+			switch ($state) 
+			{
+				case 1:
+					$this->Status=1;
+					break;
+				case 2:
+					$this->Status=2;
+					break;
+				case 3:
+					$this->Status=3;
+					break;
+			}
 		}
 
 		private function SendEmailToTeacher($Email)//顯示寄信給推薦教授的連結，用新分頁開啟
 		{
 
 		}
-		
 		public function GetApplication($School)
 		{
 
-			$currentApplication = ApplicationDB::GetApplication($School);
+			
 		}
-
-		public function test()
-		{			
-		}
-
 	}
 ?>
 
