@@ -1,9 +1,9 @@
 <?php
-	include_once "../Respository Sub-system/ConnectDB.php";
-	include_once "../Respository Sub-system/ApplicationDB.php";
-    $DoReview = new Review();
+	include_once "E:\\xampp\\htdocs\\Web-based-Graduate-Admission-Application-System\\Respository Sub-system\\ConnectDB.php";
+	include_once "E:\\xampp\\htdocs\\Web-based-Graduate-Admission-Application-System\\Respository Sub-system\\ApplicationDB.php";
+    $DoReview = new Review;
     $DoReview->Review();
-
+	
 	class Review
 	{
 		private $currentApplication;
@@ -11,11 +11,12 @@
 		{
 			$connectDB = new ConnectDB();
 			$teacherID = $_POST['TeacherID'];
-			$School = $connectDB("select School from account_data where account='$teacherID' ");
-			$jsonResult = Review::GetApplication($School);//還沒解碼
+			$jsonResult = $connectDB("select School from account_data where account='$teacherID' ");
+			//還沒解碼
 		}
 		public function Review()
 		{
+			setcookie('application_list',$currentApplication);
 			switch ($_POST['action']) 
    				{
 				    case 'All':
@@ -36,62 +37,84 @@
    				}
 		}
 
-		public function ShowThisApplication()
+		private function ShowThisApplication($index)
 		{
 
-			Review::SendEmailToTeacher($currentApplication[$index]->TeacherEmail);
 		}
 
 		private function ShowAllApplication()
 		{
+			session_start();
+			$_SESSION['application_list'] = $currentApplication;
 			for($index = 0; $index < count($currentApplication); $index++)
 			{
-				print("$currentApplication[$index].School $currentApplication[$index].Department <a href='這個學生的資料頁面'>$currentApplication[$index].Name</a><br>");
+				print_r($currentApplication[$index][3]);//學校
+				echo " ";print_r($currentApplication[$index][4]);//系所
+				echo " <a href='ShowApplication.php?index=$index'>";
+				print_r($currentApplication[$index][2]);
+				echo "</a>";//顯示學生名字及連結;
 			}
 		}
 
 		private function ShowReviewFailed()//顯示沒通過審查的申請書
 		{
+			session_start();
+			$_SESSION['application_list'] = $currentApplication;
 			for($index = 0; index < count($currentApplication); $index++)
 			{
-				if($currentApplication.State == 2)//2代表沒通過
+				if($currentApplication[$index][11]== 2)//2代表沒通過
 				{
-					print("$currentApplication[$index].School $currentApplication[$index].Department <a href='這個學生的資料頁面'>$currentApplication[$index].Name</a><br>");
+					print_r($currentApplication[$index][3]);//學校
+					echo " ";print_r($currentApplication[$index][4]);//系所
+					echo " <a href='ShowApplication.php?index=$index'>";
+					print_r($currentApplication[$index][2]);
+					echo "</a>";//顯示學生名字及連結;
 				}
 			}
 		}
 
 		private function ShowNotReview()//顯示尚未審查的申請書
 		{
+			session_start();
+			$_SESSION['application_list'] = $currentApplication;
 			for($index = 0; index < count($currentApplication); $index++)
 			{
-				if($currentApplication.State == 0)//0代表還沒審查
+				if($currentApplication[$index][11]== 0)//0代表還沒審查
 				{
-					print("$currentApplication[$index].School $currentApplication[$index].Department <a href='這個學生的資料頁面'>$currentApplication[$index].Name</a><br>");
+					print_r($currentApplication[$index][3]);//學校
+					echo " ";print_r($currentApplication[$index][4]);//系所
+					echo " <a href='ShowApplication.php?index=$index'>";
+					print_r($currentApplication[$index][2]);
+					echo "</a>";//顯示學生名字及連結;
 				}
 			}
 		}
 
 		private function ShowReviewSuccess()//顯示通過審查的申請書
 		{
+			session_start();
+			$_SESSION['application_list'] = $currentApplication;
 			for($index = 0; index < count($currentApplication); $index++)
 			{
-				if($currentApplication.State == 1)//1代表通過
+				if($currentApplication[$index][11]== 1)//1代表通過
 				{
-					print("$currentApplication[$index].School $currentApplication[$index].Department <a href='這個學生的資料頁面'>$currentApplication[$index].Name</a><br>");
-					
+					print_r($currentApplication[$index][3]);//學校
+					echo " ";print_r($currentApplication[$index][4]);//系所
+					echo " <a href='ShowApplication.php?index=$index'>";
+					print_r($currentApplication[$index][2]);
+					echo "</a>";//顯示學生名字及連結;
 				}
 			}
 		}
 
 		private function ChangeApplicationState($state)//改變狀態
 		{
-			$this->State = $state;
+			$currentApplication->State = $state;
 		}
 
 		private function SendEmailToTeacher($Email)//顯示寄信給推薦教授的連結，用新分頁開啟
 		{
-			print("<a target='_blank' href='mailto:$Email'>寄信給推薦教授</a>");
+
 		}
 		
 		public function GetApplication($School)
@@ -101,8 +124,7 @@
 		}
 
 		public function test()
-		{
-
+		{			
 		}
 
 	}
