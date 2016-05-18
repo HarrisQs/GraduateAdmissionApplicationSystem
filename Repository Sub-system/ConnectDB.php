@@ -14,8 +14,8 @@
 		{
 			$this->DBlink = @mysql_connect($this->server, $this->stduser, $this->stdpass)
 							or  $this->CatchError("無法連接資料庫,請檢查連線資訊!");
-			mysql_query("SET NAMES 'utf8'");//處理編碼問題
 			mysql_select_db($this->db);
+			mysql_query('set names utf8');//處理編碼問題
 		}
 		function __destruct()//解構子
 		{
@@ -43,7 +43,7 @@
        		@mysql_db_query($this->db, $SQL) or $this->CatchError("資料庫名稱或指令敘述錯誤!");
 		}
 		public function DB_Insert($SQL)//DB Update command
-		{		
+		{	echo $SQL;
        		@mysql_db_query($this->db, $SQL) or $this->CatchError("資料庫名稱或指令敘述錯誤!");
 		}
 		private function CatchError($Error)//處裡連接資料庫發生的錯誤

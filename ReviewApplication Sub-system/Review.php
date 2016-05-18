@@ -1,74 +1,166 @@
-<?php 
-	include_once "CurrentApplication.php"
+<?php
+	include_once"../Repository Sub-system/ConnectDB.php";
+	include_once"../Repository Sub-system/ApplicationDB.php";
+
+    $DoReview = new Review;
+    $DoReview->Review();
+	
 	class Review
 	{
 		private $currentApplication;
-		public function __construct($currentApplication)
+		public function __construct()
 		{
-			$this->currentApplication = $currentApplication;
+			$connectDB = new ConnectDB();
+			$teacherID = $_POST['TeacherID'];
+
+			$jsonResult = $connectDB->DB_SelectString("select School from account_data where account='$teacherID' ");
+			foreach($jsonResult as $key => $Value) //將json型態的array轉為php可用的array
+			{
+	    		$jsonResult[$key] = json_decode($Value, true); 
+			}
+			$teacherschool =  $jsonResult[0]["School"];
+
+			$jsonResult = $connectDB->DB_SelectString("select * from application_data where School='$teacherschool' ");
+			foreach($jsonResult as $key => $Value) //將json型態的array轉為php可用的array
+			{
+		    	$jsonResult[$key] = json_decode($Value, true); 
+			}
+			$this->currentApplication = $jsonResult;			
 		}
 		public function Review()
 		{
-			print("你想要做什麼\n");
-			print("<a herf='顯示所有申請書的頁面'>顯示所有申請書</a>");
-			print("<a herf='顯示尚未審查的申請書的頁面'>顯示尚未審查的申請書</a>");
-			print("<a herf='顯示通過審查的申請書的頁面'>顯示通過審查的申請書</a>");
-			print("<a herf='顯示未通過審查的申請書的頁面'>顯示沒通過審查的申請書</a>");
+
+			switch ($_POST['action']) 
+   				{
+				    case 'Show_All':
+				        Review::ShowAllApplication();				        
+				        break;
+				    case 'Show_Failed':
+				        Review::ShowReviewFailed();
+				        break;
+				    case 'Show_NotReview':
+				        Review::ShowNotReview();
+				        break;
+				    case 'Show_Success':
+				    	Review::ShowReviewSuccess();
+				    	break;
+
+   				}
+		}
+
+		private function ShowThisApplication($index)
+		{
+
 		}
 
 		private function ShowAllApplication()
 		{
-			reset($currentApplication);
-			for($index = 0; $index < count($currentApplication); $index++)
+			session_start();
+			$alias = serialize($this->currentApplication);
+			$doreview = serialize($this);
+			$_SESSION['application_list'] = $alias;
+			$_SESSION['DoReview'] = $doreview;
+			for($index = 0; $index < count($this->currentApplication); $index++)
 			{
-				print("$currentApplication[$index].School $currentApplication[$index].Department <a href='這個學生的資料頁面'>$currentApplication[$index].Name</a> \n");
+				echo $this->currentApplication[$index]["School"];//學校
+				echo " ";
+				echo $this->currentApplication[$index]["Department"];//系所
+				echo " <a href='ShowApplication.php?index=$index'>";
+				echo $this->currentApplication[$index]["Name"];
+				echo "</a>";//顯示學生名字及連結;
+				echo "<br>";
 			}
 		}
 
 		private function ShowReviewFailed()//顯示沒通過審查的申請書
 		{
-			reset($currentApplication);
-			for($index = 0; index < count($currentApplication); $index++)
+			session_start();
+			$alias = serialize($this->currentApplication);
+			$_SESSION['application_list'] = $alias;
+			for($index = 0; $index < count($this->currentApplication); $index++)
 			{
-				if($currentApplication.State == 2)//2代表沒通過
+
+				if($this->currentApplication[$index]["Status"] == 3)//3代表沒通過
 				{
-					print("$currentApplication[$index].School $currentApplication[$index].Department <a href='這個學生的資料頁面'>$currentApplication[$index].Name</a>\n");
+					echo $this->currentApplication[$index]["School"];//學校
+					echo " ";
+					echo $this->currentApplication[$index]["Department"];//系所
+					echo " <a href='ShowApplication.php?index=$index'>";
+					echo $this->currentApplication[$index]["Name"];
+					echo "</a>";//顯示學生名字及連結;
+					echo "<br>";
 				}
 			}
 		}
 
 		private function ShowNotReview()//顯示尚未審查的申請書
 		{
-			reset($currentApplication);
-			for($index = 0; index < count($currentApplication); $index++)
+			session_start();
+			$alias = serialize($this->currentApplication);
+			$_SESSION['application_list'] = $alias;
+			for($index = 0; $index < count($this->currentApplication); $index++)
 			{
-				if($currentApplication.State == 0)//0代表還沒審查
+				if($this->currentApplication[$index]["Status"] == 1)//1代表尚未審查
 				{
-					print("$currentApplication[$index].School $currentApplication[$index].Department <a href='這個學生的資料頁面'>$currentApplication[$index].Name</a>\n");
+					echo $this->currentApplication[$index]["School"];//學校
+					echo " ";
+					echo $this->currentApplication[$index]["Department"];//系所
+					echo " <a href='ShowApplication.php?index=$index'>";
+					echo $this->currentApplication[$index]["Name"];
+					echo "</a>";//顯示學生名字及連結;
+					echo "<br>";
 				}
 			}
 		}
 
 		private function ShowReviewSuccess()//顯示通過審查的申請書
 		{
-			reset($currentApplication);
-			for($index = 0; index < count($currentApplication); $index++)
+			session_start();
+			$alias = serialize($this->currentApplication);
+			$_SESSION['application_list'] = $alias;
+			for($index = 0; $index < count($this->currentApplication); $index++)
 			{
-				if($currentApplication.State == 1)//1代表通過
+				if($this->currentApplication[$index]["Status"] == 2)//2代表通過
 				{
-					print("$currentApplication[$index].School $currentApplication[$index].Department <a href='這個學生的資料頁面'>$currentApplication[$index].Name</a>\n");
+					echo $this->currentApplication[$index]["School"];//學校
+					echo " ";
+					echo $this->currentApplication[$index]["Department"];//系所
+					echo " <a href='ShowApplication.php?index=$index'>";
+					echo $this->currentApplication[$index]["Name"];
+					echo "</a>";//顯示學生名字及連結;
+					echo "<br>";
 				}
 			}
 		}
 
 		private function ChangeApplicationState($state)//改變狀態
 		{
-			$currentApplication.State = $state;
+			switch ($state) 
+			{
+				case 1:
+					$this->Status=1;
+					break;
+				case 2:
+					$this->Status=2;
+					break;
+				case 3:
+					$this->Status=3;
+					break;
+			}
+		}
+		public function SetState()
+		{
+			echo "fuck";
 		}
 
 		private function SendEmailToTeacher($Email)//顯示寄信給推薦教授的連結，用新分頁開啟
 		{
-			print("<a target="_blank" href="mailto:$Email">寄信給推薦教授</a>");
+
+		}
+		public function GetApplication($School)
+		{
+
+			
 		}
 	}
 ?>
