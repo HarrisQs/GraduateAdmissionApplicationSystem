@@ -16,7 +16,6 @@
 
 		public function SetState($account,$state)
 		{
-			echo $account." ".$state;
 			$this->State = $state;
 			$this->SaveToDB($account);
 
@@ -25,7 +24,10 @@
 		public function SaveToDB($account)
 		{
 			$applicationDB = new ApplicationDB();
-			echo $applicationDB->SaveState($this->State, $account);
+			if($applicationDB->SaveState($this->State, $account) == true)
+				echo "Success";
+			else 
+				echo "Fail";
 		}
 	}
 ?>
