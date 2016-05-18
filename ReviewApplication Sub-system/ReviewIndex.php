@@ -1,11 +1,11 @@
 <html>
 <?php 
 
-  /*include_once"../AccountManager-Sub-system/LogIn.php";
+  include_once"../AccountManager-Sub-system/LogIn.php";
   $login = new LogIn;
-	$TeacherID = $login->getaccount();*/
+	$TeacherID = $login->getaccount();
   
-  $TeacherID = "adminsteven";
+  //$TeacherID = "adminsteven";
 ?>
 <body>
 <form name="action" action="Review.php" method="post">
