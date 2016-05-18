@@ -25,9 +25,8 @@ Then you can use it in a web browser.
 
 ## API Reference
 
-[How to change about file upload settings to satisify your need](http://newaurora.pixnet.net/blog/post/129561868-php%E6%AA%94%E6%A1%88%E4%B8%8A%E5%82%B3%E8%A8%AD%E5%AE%9A)
-
-[Use JavaScript in PHP](http://css6.pixnet.net/blog/post/34226767-%E7%94%A8php%E7%9A%84%E6%96%B9%E5%BC%8F%E5%9F%B7%E8%A1%8Cjavascript)
+* [How to change about file upload settings to satisify your need](http://newaurora.pixnet.net/blog/post/129561868-php%E6%AA%94%E6%A1%88%E4%B8%8A%E5%82%B3%E8%A8%AD%E5%AE%9A)
+* [Use JavaScript in PHP](http://css6.pixnet.net/blog/post/34226767-%E7%94%A8php%E7%9A%84%E6%96%B9%E5%BC%8F%E5%9F%B7%E8%A1%8Cjavascript)
 
 ## Tests
 
