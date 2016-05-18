@@ -28,5 +28,9 @@
 			}
 			mysql_close( $database );
 		}
+        Public Function getaccount()
+        {
+            return $ID;
+        }
 	}
 ?>

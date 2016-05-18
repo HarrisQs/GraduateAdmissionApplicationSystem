@@ -1,28 +1,31 @@
 <?php
-	include_once "../Respository Sub-system/ApplicationDB.php";
+	include_once "../Repository Sub-system/ApplicationDB.php";
 	class CurrentApplication
 	{
-		private $TeacherEmail;
 		private $State;
-		public function __construct($TeacherEmail,$State)
+
+		public function __construct()
 		{
-			$this->TeacherEmail = $TeacherEmail;
-			$this->State = $State;
+
 		}
 
 		public function GetTeacherEmail()
 		{
-			return $this->TeacherEmail;
+
 		}
 
-		public function SetState($state)
+		public function SetState($account,$state)
 		{
+			echo $account." ".$state;
 			$this->State = $state;
+			$this->SaveToDB($account);
+
 		}
 
-		public function SaveToDB()
+		public function SaveToDB($account)
 		{
-			
+			$applicationDB = new ApplicationDB();
+			echo $applicationDB->SaveState($this->State, $account);
 		}
 	}
 ?>
