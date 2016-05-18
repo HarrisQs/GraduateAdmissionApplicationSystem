@@ -3,7 +3,9 @@
 	$index = $_GET['index'];
 	$currentApplication = $_SESSION['application_list'];
 	$_SESSION['index'] = $index;
-	$currentApplication = unserialize($currentApplication);	
+	$currentApplication = unserialize($currentApplication);
+	setcookie('Transcipts_name',$currentApplication[$index]["Transcipts"]);
+	setcookie('Letter_name',$currentApplication[$index]["RecommendationLetter"]);
 ?>
 <html>
 	<body>
@@ -16,7 +18,9 @@
 		echo "<br>Program Selection:";print_r($currentApplication[$index]["ProgramSelection"]);
 	?>
 	<br>
-	<a target='_blank' href='mailto:<?php print_r($currentApplication[$index]["TeacherEmail"]);?>'>寄信給推薦教授</a>
+	<a target='_blank' href='mailto:<?php print_r($currentApplication[$index]["TeacherEmail"]);?>'>寄信給推薦教授</a><br>
+	<a href='Download.php?object=1'>下載成績單</a><br>
+	<a href='Download.php?object=2'>下載推薦信</a>
 	</body>
 	<?php 
 		echo "<br>申請書狀態: ";
@@ -36,7 +40,7 @@
 				break;
 		}	
 	?>
-
+	<br><br>
 	<form name="action" action="SetState.php" method="post">
         <select name = "action">
           <option>請選擇審查結果</option>

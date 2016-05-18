@@ -5,7 +5,7 @@
   $login = new LogIn;
 	$TeacherID = $login->getaccount();
   
-  $TeacherID = "adminsteven";
+  //$TeacherID = "adminsteven";
 ?>
 <body>
 <form name="action" action="Review.php" method="post">
