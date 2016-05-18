@@ -29,9 +29,7 @@
 		}
 		public function Review()
 		{
-			$alias = serialize($this->currentApplication);
-			$_SESSION['application_list'] = $alias;
-			setcookie('application_list',$alias);
+
 			switch ($_POST['action']) 
    				{
 				    case 'Show_All':
@@ -59,7 +57,9 @@
 		{
 			session_start();
 			$alias = serialize($this->currentApplication);
+			$doreview = serialize($this);
 			$_SESSION['application_list'] = $alias;
+			$_SESSION['DoReview'] = $doreview;
 			for($index = 0; $index < count($this->currentApplication); $index++)
 			{
 				echo $this->currentApplication[$index]["School"];//學校
@@ -147,6 +147,10 @@
 					$this->Status=3;
 					break;
 			}
+		}
+		public function SetState()
+		{
+			echo "fuck";
 		}
 
 		private function SendEmailToTeacher($Email)//顯示寄信給推薦教授的連結，用新分頁開啟

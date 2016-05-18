@@ -1,9 +1,9 @@
 <?php
 	session_start();
 	$index = $_GET['index'];
-	$currentApplication = $_SESSION["application_list"];
-	$currentApplication = unserialize($currentApplication);
-	unset($_SESSION['application_list']);
+	$currentApplication = $_SESSION['application_list'];
+	$_SESSION['index'] = $index;
+	$currentApplication = unserialize($currentApplication);	
 ?>
 <html>
 	<body>
