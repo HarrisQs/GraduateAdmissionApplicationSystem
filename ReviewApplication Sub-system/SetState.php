@@ -21,3 +21,12 @@
 			break;
 	}
 ?>
+<html>   
+<head>
+<br>   
+<meta http-equiv="refresh" content="5;url=<?php echo 'ReviewIndex.php'; ?>">   
+</head>   
+<body> 
+此頁面將於五秒後跳轉。
+</body>
+</html>

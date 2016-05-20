@@ -25,9 +25,10 @@
 		{
 			$applicationDB = new ApplicationDB();
 			if($applicationDB->SaveState($this->State, $account) == true)
-				echo "Success";
+				echo "更改成功";
 			else 
-				echo "Fail";
+				echo "更改失敗，請再試一次";
 		}
 	}
 ?>
+
