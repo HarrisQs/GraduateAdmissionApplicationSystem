@@ -25,6 +25,10 @@
 				if($Email==$admin)
 				{
 					echo "vaildent success! we will email to you!";
+					if(mail("miranda84315@gmail.com","change password","please to click this:","from:s1021752@mail.yzu.edu.tw"))
+						echo "信件已經發送成功。";//寄信成功就會顯示的提示訊息
+					else
+						echo "信件發送失敗！";//寄信失敗顯示的錯誤訊息
 					return true;
 				}
 				else
