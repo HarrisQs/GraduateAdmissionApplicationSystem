@@ -81,6 +81,7 @@
 
 		private function SetName($n,$currentAccount) //name,account
 		{
+			echo $n;
 			$this->CurrentBasicData->SetName($n,$currentAccount);
 		}
 

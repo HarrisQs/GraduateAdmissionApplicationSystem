@@ -15,7 +15,7 @@
 		public function SetCV($cV,$currentAccount)
 		{
 			$Account = $currentAccount;
-			$CV = $cV;
+			$this->CV = $cV;
 		}
 
 		public function SaveToDB()

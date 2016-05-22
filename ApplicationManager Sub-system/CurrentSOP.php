@@ -15,7 +15,7 @@
 		public function SetSOP($sop,$currentAccount)
 		{
 			$Account = $currentAccount;
-			$SOP = $sop;
+			$this->SOP = $sop;
 		}
 
 		public function SaveToDB()

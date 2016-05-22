@@ -14,8 +14,8 @@
 
 		public function SetTranscripts($tra,$currentAccount)//Set帳號及檔案
 		{
-			$Account = $currentAccount;
-			$Transcripts = $tra;
+			$this->Account = $currentAccount;
+			$this->Transcripts = $tra;
 			$this->Upload($Transcripts);
 		}
 

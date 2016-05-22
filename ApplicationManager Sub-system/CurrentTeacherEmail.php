@@ -15,7 +15,7 @@
 		public function SetTeacherEmail($teacheremail,$currentAccount)
 		{
 			$Account = $currentAccount;
-			$TeacherEmail = $teacheremail;
+			$this->TeacherEmail = $teacheremail;
 		}
 
 		public function SaveToDB()

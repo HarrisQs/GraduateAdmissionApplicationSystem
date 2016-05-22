@@ -19,37 +19,36 @@
 		public function SetAccount($account, $currentAccount)
 		{
 			$account = $currentAccount;
-			echo $account;
+			//echo $account;
 		}
 
 		public function SetEmail($email, $currentAccount)
 		{
 			$Account = $currentAccount;
-			$Email = $email;
+			$this->Email = $email;
 		}
 
 		public function SetName($name, $currentAccount)
 		{
 			$account = $currentAccount;
-			$Name = $name;
+			$this->Name = $name;
 		}
 
 		public function SetSchool($school, $currentAccount)
 		{
 			$account = $currentAccount;
-			$School = $school;
+			$this->School = $school;
 		}
 
 		public function SetDepartment($department, $currentAccount)
 		{
 			$account = $currentAccount;
-			$Department = $department;
+			$this->Department = $department;
 		}
 
 		public function SaveToDB()
 		{
 			$this->Database->SaveBasicData($this->Email,$this->Name,$this->School,$this->Department,$this->Account);
-			echo "***********************Here is basic data************************";
 		}
 	}
 ?>

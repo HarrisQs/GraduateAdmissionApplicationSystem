@@ -15,7 +15,7 @@
 		public function SetProgramSelection($programselectioon,$currentAccount)
 		{
 			$Account = $currentAccount;
-			$ProgramSelection = $programselectioon;
+			$this->ProgramSelection = $programselectioon;
 		}
 
 		public function SaveToDB()
