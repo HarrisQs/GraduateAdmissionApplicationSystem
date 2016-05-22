@@ -14,7 +14,7 @@
 
 		public function SetTeacherEmail($teacheremail,$currentAccount)
 		{
-			$Account = $currentAccount;
+			$this->Account = $currentAccount;
 			$this->TeacherEmail = $teacheremail;
 		}
 

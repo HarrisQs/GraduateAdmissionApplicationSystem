@@ -14,7 +14,7 @@
 
 		public function SetSOP($sop,$currentAccount)
 		{
-			$Account = $currentAccount;
+			$this->Account = $currentAccount;
 			$this->SOP = $sop;
 		}
 

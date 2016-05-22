@@ -24,25 +24,25 @@
 
 		public function SetEmail($email, $currentAccount)
 		{
-			$Account = $currentAccount;
+			$this->Account = $currentAccount;
 			$this->Email = $email;
 		}
 
 		public function SetName($name, $currentAccount)
 		{
-			$account = $currentAccount;
+			$this->Account = $currentAccount;
 			$this->Name = $name;
 		}
 
 		public function SetSchool($school, $currentAccount)
 		{
-			$account = $currentAccount;
+			$this->Account = $currentAccount;
 			$this->School = $school;
 		}
 
 		public function SetDepartment($department, $currentAccount)
 		{
-			$account = $currentAccount;
+			$this->Account = $currentAccount;
 			$this->Department = $department;
 		}
 

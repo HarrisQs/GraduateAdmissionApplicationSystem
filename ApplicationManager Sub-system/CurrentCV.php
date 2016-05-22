@@ -14,7 +14,7 @@
 
 		public function SetCV($cV,$currentAccount)
 		{
-			$Account = $currentAccount;
+			$this->Account = $currentAccount;
 			$this->CV = $cV;
 		}
 

@@ -16,7 +16,7 @@
 		{
 			$this->Account = $currentAccount;
 			$this->Transcripts = $tra;
-			$this->Upload($Transcripts);
+			$this->Upload($this->Transcripts);
 		}
 
 		public function Upload($file)//上傳檔案，檢查是否錯誤以及檔案大小(>2MB不給船傳)
@@ -25,8 +25,8 @@
 			if($_FILES[$file]["error"])
 			{
 				echo '<script type="text/javascript">
-						alert("上傳失敗!");
-						location.href="UploadUI.html";
+						alert("Upload Fail!");
+						location.href="interface.html";
 					</script>';
 					return false;
 			}

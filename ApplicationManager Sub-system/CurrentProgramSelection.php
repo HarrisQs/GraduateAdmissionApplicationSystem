@@ -14,7 +14,7 @@
 
 		public function SetProgramSelection($programselectioon,$currentAccount)
 		{
-			$Account = $currentAccount;
+			$this->Account = $currentAccount;
 			$this->ProgramSelection = $programselectioon;
 		}
 
