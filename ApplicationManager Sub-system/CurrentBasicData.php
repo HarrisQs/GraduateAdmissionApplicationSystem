@@ -48,7 +48,7 @@
 
 		public function SaveToDB()
 		{
-			$this->Database->SaveBasicData($Account,$Email,$Name,$School,$Department);
+			$this->Database->SaveBasicData($Email,$Name,$School,$Department,$Account);
 		}
 	}
 ?>

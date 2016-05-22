@@ -15,15 +15,15 @@
 		{
 
 		}
-		public function SaveBasicData($basicData, $account)//儲存基本資料
+		public function SaveBasicData($Email,$Name,$School,$Department, $account)//儲存基本資料
 		{				
-			$json_Result = json_decode($basicData); //parse json
+			//$json_Result = json_decode($basicData); //parse json
 			$command = "insert into application_data (account, Email, Name, School, Department)
 						VALUES ('$account', 
-								'$json_Result->Email', 
-								'$json_Result->Name', 
-								'$json_Result->School', 
-								'$json_Result->Department'
+								'$Email', 
+								'$Name', 
+								'$School', 
+								'$Department'
 								);";
 			$this->DataBase->DB_Insert($command);
 			return true;
