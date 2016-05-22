@@ -7,27 +7,38 @@
 
 		private $Database;
 
-		function __construct()
+		function __construct()//連接資料庫
 		{
 			$this->Database = new ApplicationDB();
 		}
 
-		public function SetTranscripts($tra,$currentAccount)
+		public function SetTranscripts($tra,$currentAccount)//Set帳號及檔案
 		{
 			$Account = $currentAccount;
 			$Transcripts = $tra;
-			$Transcripts=iconv('utf-8','big5',$_FILES["fileToUpload"]["name"]);//檔名中文轉碼
 			$this->Upload($Transcripts);
 		}
 
-		public function Upload($fileName)
+		public function Upload($file)//上傳檔案，檢查是否錯誤以及檔案大小(>2MB不給船傳)
 		{
+			$FileName=iconv('utf-8','big5',$_FILES[$Transcripts]["name"]);
+			if($_FILES[$file]["error"])
+			{
+				echo '<script type="text/javascript">
+						alert("上傳失敗!");
+						location.href="UploadUI.html";
+					</script>';
+					return false;
+			}
+			if($_FILES[$file]["size"]/1024 > 2000)
+			{
+				echo "File too big";
+				return false;
+			}
 
-		}
-
-		public function SaveToDB()
-		{
-			$this->Database->SaveSOP($SOP,$Account);
+			move_uploaded_file($_FILES[$file]["tmp_name"], "UploadFile/".$FileName); 
+			$this->Database->SaveTranscripts($FileName,$Account);
+			return true;
 		}
 	}
 ?>

@@ -8,6 +8,7 @@
 	include_once "CurrentTranscripts.php";		//上傳成績單
 	include_once "CurrentSOP.php";				//動機簡述
 	include_once "CurrentTeacherEmail.php";		//推薦教授信箱
+	include_once "../Repository Sub-system/ApplicationDB.php";//申請書資料的DATABASE
 
 	new FillOutData();
 	class FillOutData
@@ -32,6 +33,7 @@
 		private $CurrentTeacherEmail;
 		private $CurrentTranscripts;
 
+
 		function __construct()
 		{
 			$NAME = $_POST["name"];
@@ -42,7 +44,7 @@
 			$SOP = $_POST["sop"];
 			$CV = $_POST["cv"];
 			$PROMGRAMSELECTION = $_POST["programselection"];
-			$TRANSCRIPT = $_POST["transcript"];
+			@$TRANSCRIPT = $_POST["transcripts"];
 
 
 			$this->CurrentBasicData = new CurrentBasicData();
@@ -54,6 +56,7 @@
 
 			$this->FillApplicationData($NAME,$EMAIL,$SCHOOL,$DEPARTMENT,$TRANSCRIPT,$TEACHEREMAIL,$SOP,$PROMGRAMSELECTION,$CV);
 			$this->Database = new ApplicationDB();
+			$this->Database->GetLastHistory();
 		}
 		public function FillApplicationData($Name,$Email,$School,$Department,$Transcripts, $Teacheremail, $Sop, $Programselection, $Cv)
 		{
@@ -68,6 +71,11 @@
 			$this->SetCV($Cv,$this->currentaccount);
 
 			$this->CurrentBasicData->SaveToDB();
+			$this->CurrentCV->SaveToDB();
+			$this->CurrentProgramSelection->SaveToDB();
+			$this->CurrentSOP->SaveToDB();
+			$this->CurrentTeacherEmail->SaveToDB();
+			$this->CurrentTranscripts->SaveToDB();
 		}
 
 
@@ -116,7 +124,7 @@
 			$this->CurrentCV->SetCV($c,$this->currentaccount);
 		}
 
-		private function GetLastHistory($account)
+		private function GetLastHistory($account)//讀取歷史資料
 		{
 			$this->Database->GetLastHistory($account);
 		}
