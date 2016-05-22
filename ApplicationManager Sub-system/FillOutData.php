@@ -75,7 +75,7 @@
 			$this->CurrentProgramSelection->SaveToDB();
 			$this->CurrentSOP->SaveToDB();
 			$this->CurrentTeacherEmail->SaveToDB();
-			$this->CurrentTranscripts->SaveToDB();
+			$this->CurrentTranscripts->Upload();
 		}
 
 
@@ -101,7 +101,7 @@
 
 		private function SetTranscripts($tra, $currentAccount)//transcripts,account
 		{
-			$this->CurrentTranscripts->SetTranscripts($tra,$this->$currentaccount);
+			$this->CurrentTranscripts->SetTranscripts($tra,$this->currentaccount);
 		}
 
 		private function SetTeacherEmail($teacher, $currentAccount)//teacherEmail,account

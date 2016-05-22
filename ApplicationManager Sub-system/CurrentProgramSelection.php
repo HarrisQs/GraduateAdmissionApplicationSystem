@@ -20,7 +20,7 @@
 
 		public function SaveToDB()
 		{
-			$this->Database->SaveProgramSelection($ProgramSelection,$Account);
+			$this->Database->SaveProgramSelection($this->ProgramSelection,$this->Account);
 		}
 	}
 ?>

@@ -21,7 +21,7 @@
 
 		public function Upload($file)//上傳檔案，檢查是否錯誤以及檔案大小(>2MB不給船傳)
 		{
-			$FileName=iconv('utf-8','big5',$_FILES[$Transcripts]["name"]);
+			$FileName=iconv('utf-8','big5',$_FILES[$this->Transcripts]["name"]);
 			if($_FILES[$file]["error"])
 			{
 				echo '<script type="text/javascript">
@@ -37,7 +37,7 @@
 			}
 
 			move_uploaded_file($_FILES[$file]["tmp_name"], "UploadFile/".$FileName); 
-			$this->Database->SaveTranscripts($FileName,$Account);
+			$this->Database->SaveTransrcipts($FileName,$this->Account);
 			return true;
 		}
 	}

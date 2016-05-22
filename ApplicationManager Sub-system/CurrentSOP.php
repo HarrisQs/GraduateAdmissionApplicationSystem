@@ -20,7 +20,7 @@
 
 		public function SaveToDB()
 		{
-			$this->Database->SaveSOP($SOP,$Account);
+			$this->Database->SaveSOP($this->SOP,$this->Account);
 		}
 	}
 ?>

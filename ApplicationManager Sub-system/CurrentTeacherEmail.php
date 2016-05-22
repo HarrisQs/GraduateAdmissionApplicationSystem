@@ -20,7 +20,7 @@
 
 		public function SaveToDB()
 		{
-			$this->Database->SaveTeacherEmail($TeacherEmail,$Account);
+			$this->Database->SaveTeacherEmail($this->TeacherEmail,$this->Account);
 		}
 	}
 ?>

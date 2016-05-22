@@ -20,7 +20,7 @@
 
 		public function SaveToDB()
 		{
-			$this->Database->SaveCV($CV,$Account);
+			$this->Database->SaveCV($this->CV,$this->Account);
 		}
 	}
 ?>

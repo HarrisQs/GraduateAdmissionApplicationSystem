@@ -48,7 +48,8 @@
 
 		public function SaveToDB()
 		{
-			$this->Database->SaveBasicData($Email,$Name,$School,$Department,$Account);
+			$this->Database->SaveBasicData($this->Email,$this->Name,$this->School,$this->Department,$this->Account);
+			echo "***********************Here is basic data************************";
 		}
 	}
 ?>
