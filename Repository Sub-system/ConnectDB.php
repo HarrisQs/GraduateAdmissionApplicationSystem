@@ -4,10 +4,10 @@
 //負責與資料庫連接的部分
 	class ConnectDB //連接資料庫
 	{
-		private $db  = "repository sub-system";
+		private $db  = "20160522";
 		private $server="127.0.0.1";
 		private $stduser="root";
-		private $stdpass= "software";
+		private $stdpass= "";
 		private $DBlink;
 
 		function __construct()//資料庫連接 建構子

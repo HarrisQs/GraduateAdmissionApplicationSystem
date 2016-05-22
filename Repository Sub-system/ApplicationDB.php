@@ -18,6 +18,7 @@
 		public function SaveBasicData($Email,$Name,$School,$Department, $account)//儲存基本資料
 		{				
 			//$json_Result = json_decode($basicData); //parse json
+
 			$command = "insert into application_data (account, Email, Name, School, Department)
 						VALUES ('$account', 
 								'$Email', 
@@ -25,6 +26,7 @@
 								'$School', 
 								'$Department'
 								);";
+			echo $command;
 			$this->DataBase->DB_Insert($command);
 			return true;
 		}

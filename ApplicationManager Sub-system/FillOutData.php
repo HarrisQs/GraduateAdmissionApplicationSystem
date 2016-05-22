@@ -49,6 +49,8 @@
 			$this->SetSOP($Sop,$this->currentaccount);
 			$this->SetProgramSelection($Programselection,$this->currentaccount);
 			$this->SetCV($Cv,$this->currentaccount);
+
+			$this->currentBasicData->SaveToDB();
 		}
 
 
@@ -59,33 +61,36 @@
 
 		private function SetEmail($e,$currentAccount)//email,account
 		{
-			$this->currentBasicData->SetEmail($e,$currentaccount);
+			$this->currentBasicData->SetEmail($e,$this->currentaccount);
 		}
 
 		private function SetSchool($s,$currentAccount)//school,account
 		{
-			$this->currentBasicData->SetSchool($s,$currentaccount);
+			$this->currentBasicData->SetSchool($s,$this->currentaccount);
 		}
 
 		private function SetDepartment($d,$currentAccount)//department,account
 		{
-			$this->currentBasicData->SetDepartment($d,$currentaccount);
+			$this->currentBasicData->SetDepartment($d,$this->currentaccount);
 		}
 
 		private function SetTranscripts($transcripts, $currentAccount)
 		{
 		}
 
-		private function SetTeacherEmail($TeacherEmail, $currentAccount)
+		private function SetTeacherEmail($teacher, $currentAccount)//teacherEmail,account
 		{
+			$this->currentBasicData->SetTeacherEmail($teacher,$this->currentaccount);
 		}
 
-		private function SetSOP($SOP, $currentAccount)
+		private function SetSOP($S, $currentAccount)//SOP,account
 		{
+			$this->currentBasicData->SetSOP($S,$this->currentaccount);
 		}
 
-		private function SetProgramSelection($programselection, $currentAccount)
+		private function SetProgramSelection($p, $currentAccount)
 		{
+			$this->currentBasicData->SetProgramSelection($p,$this->currentaccount);
 		}
 
 		private function SetCV($CV, $currentAccount)

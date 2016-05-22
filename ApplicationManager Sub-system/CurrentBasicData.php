@@ -1,6 +1,6 @@
 <?php
 	//基本資料處理
-	include_once "ApplicationDB.php"
+	include_once "../Repository Sub-system/ApplicationDB.php";
 	class currentBasicData
 	{
 		private $Account;
