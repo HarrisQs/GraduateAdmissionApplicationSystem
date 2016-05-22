@@ -26,6 +26,12 @@
 		private $Database;
 
 		private $CurrentBasicData;
+		private $CurrentCV;
+		private $CurrentProgramSelection;
+		private $CurrentSOP;
+		private $CurrentTeacherEmail;
+		private $CurrentTranscripts;
+
 		function __construct()
 		{
 			$NAME = $_POST["name"];
@@ -37,7 +43,15 @@
 			$CV = $_POST["cv"];
 			$PROMGRAMSELECTION = $_POST["programselection"];
 			$TRANSCRIPT = $_POST["transcript"];
+
+
 			$this->CurrentBasicData = new CurrentBasicData();
+			$this->CurrentCV = new CurrentCV();
+			$this->CurrentProgramSelection = new CurrentProgramSelection();
+			$this->CurrentSOP = new CurrentSOP();
+			$this->CurrentTeacherEmail = new CurrentTeacherEmail();
+			$this->CurrentTranscripts = new CurrentTranscripts();
+
 			$this->FillApplicationData($NAME,$EMAIL,$SCHOOL,$DEPARTMENT,$TRANSCRIPT,$TEACHEREMAIL,$SOP,$PROMGRAMSELECTION,$CV);
 			$this->Database = new ApplicationDB();
 		}
@@ -77,8 +91,9 @@
 			$this->CurrentBasicData->SetDepartment($d,$this->currentaccount);
 		}
 
-		private function SetTranscripts($transcripts, $currentAccount)
+		private function SetTranscripts($tra, $currentAccount)//transcripts,account
 		{
+			$this->CurrentTranscripts->SetTranscripts($tra,$this->$currentaccount);
 		}
 
 		private function SetTeacherEmail($teacher, $currentAccount)//teacherEmail,account

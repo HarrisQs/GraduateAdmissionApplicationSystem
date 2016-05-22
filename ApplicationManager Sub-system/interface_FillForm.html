@@ -9,7 +9,7 @@
 	<TABLE width='450' align='center' border='0'>
 	
 		<TR bgcolor='#7700FF' valign='center'>
-			<TD align='center' height='30' width='100'><H3 style='color:#FFFF00'>基本資料填寫</H3></TD>
+			<TD align='center' height='30' width='200'><H3 style='color:#FFFF00'>基本資料填寫</H3></TD>
 		</TR>
 		<TR bgcolor='#93FF65' valign='center'>
 			<TD align='center' height='32' width='100'>欄位名</TD>
@@ -61,7 +61,7 @@
 		<TR bgcolor='#FFFA9E' valign='center'>
 			<TD align='right' height='32'>動機簡述</TD>
 			<TD align='left'>&nbsp;
-				<INPUT name='sop' type='text' size='20'></TD>
+				<textarea cols="50" rows="2" INPUT name='sop'></textarea></TD>
 		</TR>
 
 		<TR bgcolor='#FFFA9E' valign='center'>
@@ -71,15 +71,16 @@
 		</TR>
 
 		<TR bgcolor='#FFFA9E' valign='center'>
-			<TD align='right' height='32'>自傳</TD>
+			<TD align='right' height='200'>自傳</TD>
 			<TD align='left'>&nbsp;
-				<INPUT name='cv' type='text' size='20'></TD>
+				<textarea cols="50" rows="10" INPUT name='cv' type='text' size='20'></textarea></TD>
 		</TR>
 
 		<TR bgcolor='#FFFA9E' valign='center'>
 			<TD align='right' height='32'>上傳成績單</TD>
 			<TD align='left'>&nbsp;
-				<INPUT name='transcript' type='text' size='20'></TD>
+				<!-- <INPUT name='transcript' type='text' size='20'></TD> -->
+				<input type="file" name="transcript"/>
 		</TR>
 
 	</TABLE>
