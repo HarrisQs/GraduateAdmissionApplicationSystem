@@ -4,7 +4,7 @@
 	class currentBasicData
 	{
 		private $Account;
-		$Email;
+		private $Email;
 		private $Name;
 		private $School;
 		private $Department;
@@ -12,19 +12,18 @@
 		function __construct()
 		{
 			echo "hrhrhr";
-			$Email = "abc";
-			echo $Email;
 		}
 
-		/*public function SetAccount($account, $currrentAccount)
+		public function SetAccount($account, $currrentAccount)
 		{
 			$account = $currentAccount;
 		}
 
 		public function SetEmail($email, $currrentAccount)
 		{
-			$account = $currentAccount;
-			$Email = $email;
+			/*$account = $currentAccount;
+			$Email = $email;*/
+			echo "Email here";
 		}
 
 		public function SetName($name, $currentAccount)
@@ -48,6 +47,6 @@
 		public function SaveToDB()
 		{
 			echo "Test";
-		}*/
+		}
 	}
 ?>

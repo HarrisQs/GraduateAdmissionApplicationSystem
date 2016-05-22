@@ -18,8 +18,7 @@
 		}
 		public function FillApplicationData($basicdata, $transcripts, $TeacherEmail, $SOP, $programSelection, $CV)
 		{
-			//$currentBasicData->Email = $TeacherEmail;
-			//echo $currentBasicData->Email;
+			$currentBasicData->SetEmail($TeacherEmail, "hfxuj");
 		}
 
 		/*private function SetBasicData($basicData, $currentAccount)
