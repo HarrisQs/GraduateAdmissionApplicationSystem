@@ -1,6 +1,6 @@
 <?php
 	//基本資料處理
-	new currentBasicData();
+	include_once "ApplicationDB.php"
 	class currentBasicData
 	{
 		private $Account;
@@ -9,21 +9,23 @@
 		private $School;
 		private $Department;
 
+		private $Database;
+
 		function __construct()
 		{
-			echo "hrhrhr";
+			$this->Database = new ApplicationDB();
 		}
 
-		public function SetAccount($account, $currrentAccount)
+		public function SetAccount($account, $currentAccount)
 		{
 			$account = $currentAccount;
+			echo $account;
 		}
 
-		public function SetEmail($email, $currrentAccount)
+		public function SetEmail($email, $currentAccount)
 		{
-			/*$account = $currentAccount;
-			$Email = $email;*/
-			echo "Email here";
+			$Account = $currentAccount;
+			$Email = $email;
 		}
 
 		public function SetName($name, $currentAccount)
@@ -46,7 +48,7 @@
 
 		public function SaveToDB()
 		{
-			echo "Test";
+			$this->Database->SaveBasicData($Account,$Email,$Name,$School,$Department);
 		}
 	}
 ?>
