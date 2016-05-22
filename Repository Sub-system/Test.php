@@ -1,10 +1,10 @@
 <?php
-include_once "FillOutData.php";
+include_once "AccountDB.php";
 
-$carPart = new FillOutData();
+$carPart = new AccountDB();
 
 //$carPart -> AddNewAccount("11112");
-//echo $carPart ->GetLastHistory('1ddd11');
+echo $carPart ->ValidateAccount('11112','1ddd11');
 
 //Call the function with the "->" operator
 //This time with the argument "Black Color"

@@ -4,10 +4,10 @@
 //負責與資料庫連接的部分
 	class ConnectDB //連接資料庫
 	{
-		private $db  = "20160522";
+		private $db  = "err";
 		private $server="127.0.0.1";
 		private $stduser="root";
-		private $stdpass= "";
+		private $stdpass= "software";
 		private $DBlink;
 
 		function __construct()//資料庫連接 建構子
@@ -37,6 +37,18 @@
        		while ($row = mysql_fetch_assoc($result))
        			$answer[] = json_encode($row);
        		return $answer;
+		}
+		public function DB_SelectAdministrator($SQL)//DB Select Administrator
+		{		
+       		$result = @mysql_db_query($this->db, $SQL) or $this->CatchError("資料庫名稱或指令敘述錯誤!");
+       		$answer = array();
+       		$counter = 0;
+       		while ($row = mysql_fetch_assoc($result))
+       		{
+       			$answer = $row;
+       			//print $answer['IsAdministator'];印出是否為管理者
+       		}
+       		return $answer['IsAdministator'];
 		}
 		public function DB_Update($SQL)//DB Update command
 		{		

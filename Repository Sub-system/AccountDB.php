@@ -4,15 +4,18 @@
 //負責管理帳號資料庫的部分
 	include_once "ConnectDB.php";
 	include_once "LogDB.php";
+	include_once "../ApplicationManager Sub-system/FillOutData.php";
 	class AccountDB
 	{
 		private $DataBase;
 		private $LogDataBase;
+		private $FillOutData;
 
 		function __construct() //建構子 用來連接資料庫
 		{
      		 $this->DataBase = new ConnectDB();
      		 $this->LogDataBase = new LogDB();
+     		 $this->FillOutData = new FillOutData();
    		}
    		function __destruct()
 		{
@@ -32,10 +35,12 @@
 		}
 		public function ValidateAccount($account, $password)//驗證帳號密碼
 		{
-			$command = "select * from account_data where account='$account' And pass='$password'";
+			$command = "select IsAdministator from account_data where account='$account' And pass='$password'";//
 			if($this->DataBase->DB_SelectBool($command))
 			{
 				$this->LogDataBase->SaveLogInLog($account);
+				if($this->DataBase->DB_SelectAdministrator($command) == 0)
+					$this->FillOutData->SetAccount($account);
 				return true;
 			}
 			else
