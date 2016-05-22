@@ -23,7 +23,9 @@
 		public $TRANSCRIPT;
 		public $currentaccount;
 
-		private $currentBasicData;
+		private $Database;
+
+		private $CurrentBasicData;
 		function __construct()
 		{
 			$NAME = $_POST["name"];
@@ -35,8 +37,9 @@
 			$CV = $_POST["cv"];
 			$PROMGRAMSELECTION = $_POST["programselection"];
 			$TRANSCRIPT = $_POST["transcript"];
-			$this->currentBasicData = new currentBasicData();
+			$this->CurrentBasicData = new CurrentBasicData();
 			$this->FillApplicationData($NAME,$EMAIL,$SCHOOL,$DEPARTMENT,$TRANSCRIPT,$TEACHEREMAIL,$SOP,$PROMGRAMSELECTION,$CV);
+			$this->Database = new ApplicationDB();
 		}
 		public function FillApplicationData($Name,$Email,$School,$Department,$Transcripts, $Teacheremail, $Sop, $Programselection, $Cv)
 		{
@@ -50,28 +53,28 @@
 			$this->SetProgramSelection($Programselection,$this->currentaccount);
 			$this->SetCV($Cv,$this->currentaccount);
 
-			$this->currentBasicData->SaveToDB();
+			$this->CurrentBasicData->SaveToDB();
 		}
 
 
 		private function SetName($n,$currentAccount) //name,account
 		{
-			$this->currentBasicData->SetName($n,$currentAccount);
+			$this->CurrentBasicData->SetName($n,$currentAccount);
 		}
 
 		private function SetEmail($e,$currentAccount)//email,account
 		{
-			$this->currentBasicData->SetEmail($e,$this->currentaccount);
+			$this->CurrentBasicData->SetEmail($e,$this->currentaccount);
 		}
 
 		private function SetSchool($s,$currentAccount)//school,account
 		{
-			$this->currentBasicData->SetSchool($s,$this->currentaccount);
+			$this->CurrentBasicData->SetSchool($s,$this->currentaccount);
 		}
 
 		private function SetDepartment($d,$currentAccount)//department,account
 		{
-			$this->currentBasicData->SetDepartment($d,$this->currentaccount);
+			$this->CurrentBasicData->SetDepartment($d,$this->currentaccount);
 		}
 
 		private function SetTranscripts($transcripts, $currentAccount)
@@ -80,25 +83,27 @@
 
 		private function SetTeacherEmail($teacher, $currentAccount)//teacherEmail,account
 		{
-			$this->currentBasicData->SetTeacherEmail($teacher,$this->currentaccount);
+			$this->CurrentTeacherEmail->SetTeacherEmail($teacher,$this->currentaccount);
 		}
 
 		private function SetSOP($S, $currentAccount)//SOP,account
 		{
-			$this->currentBasicData->SetSOP($S,$this->currentaccount);
+			$this->CurrentSOP->SetSOP($S,$this->currentaccount);
 		}
 
-		private function SetProgramSelection($p, $currentAccount)
+		private function SetProgramSelection($p, $currentAccount)//programselection,account
 		{
-			$this->currentBasicData->SetProgramSelection($p,$this->currentaccount);
+			$this->CurrentProgramSelection->SetProgramSelection($p,$this->currentaccount);
 		}
 
-		private function SetCV($CV, $currentAccount)
+		private function SetCV($c, $currentAccount)//CV,account
 		{
+			$this->CurrentCV->SetCV($c,$this->currentaccount);
 		}
 
 		private function GetLastHistory($account)
 		{
+			$this->Database->GetLastHistory($account);
 		}
 
 		public function SetAccount($account)

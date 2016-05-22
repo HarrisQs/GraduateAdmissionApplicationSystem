@@ -1,7 +1,7 @@
 <?php
 	//基本資料處理
 	include_once "../Repository Sub-system/ApplicationDB.php";
-	class currentBasicData
+	class CurrentBasicData
 	{
 		private $Account;
 		private $Email;
