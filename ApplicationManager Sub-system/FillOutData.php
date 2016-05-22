@@ -8,30 +8,21 @@
 	include_once "CurrentTranscripts.php";		//上傳成績單
 	include_once "CurrentSOP.php";				//動機簡述
 	include_once "CurrentTeacherEmail.php";		//推薦教授信箱
-
 	class FillOutData
 	{
 		private $currentBasicData;
 		function __construct()
 		{
 			$this->currentBasicData = new currentBasicData();
+			$this->FillApplicationData("a","aa","aaa","aaaa","aaaaa","aaaaaa");
 		}
-
-
-		/*public function FillApplicationData($basicdata, $transcripts, $TeacherEmail, $SOP, $programSelection, $CV)
+		public function FillApplicationData($basicdata, $transcripts, $TeacherEmail, $SOP, $programSelection, $CV)
 		{
-			//SetBasicData($basicdata)
-			SetTranscripts($transcripts);
-			SetTeacherEmail($TeacherEmail);
-			SetSOP($sOP);
-			SetProgramSelection($programSelection);
-			SetCV($CV);
-
-			//currentBasicData.SaveToDB();
-			currentTranscript.SaveToDB();
+			//$currentBasicData->Email = $TeacherEmail;
+			//echo $currentBasicData->Email;
 		}
 
-		private function SetBasicData($basicData, $currentAccount)
+		/*private function SetBasicData($basicData, $currentAccount)
 		{
 		}
 

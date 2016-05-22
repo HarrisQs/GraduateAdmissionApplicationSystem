@@ -1,9 +1,10 @@
 <?php
 	//基本資料處理
+	new currentBasicData();
 	class currentBasicData
 	{
 		private $Account;
-		private $Email;
+		$Email;
 		private $Name;
 		private $School;
 		private $Department;
@@ -11,6 +12,8 @@
 		function __construct()
 		{
 			echo "hrhrhr";
+			$Email = "abc";
+			echo $Email;
 		}
 
 		/*public function SetAccount($account, $currrentAccount)
