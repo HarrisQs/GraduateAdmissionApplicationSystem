@@ -37,12 +37,12 @@
 			if($this->DataBase->DB_SelectBool($command))
 			{
 				$this->LogDataBase->SaveLogInLog($account);
-				if($this->DataBase->DB_SelectAdministrator($command) == 0)
-				{
-					session_start();
+				session_start();
 				    $_SESSION[currentAccount] = $account;// 寫入 Session 變數
+				if($this->DataBase->DB_SelectAdministrator($command) == 0)
 				    header("Location: ../ApplicationManager Sub-system/interface_FillForm.html"); //跳轉
-				}
+				else
+					header("Location: ../ReviewApplication%20Sub-system/ReviewIndex.php");
 				return true;
 			}
 			else
