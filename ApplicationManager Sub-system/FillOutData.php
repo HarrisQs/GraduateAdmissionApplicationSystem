@@ -46,7 +46,7 @@
 			$PROMGRAMSELECTION = $_POST["programselection"];
 			@$TRANSCRIPT = $_POST["transcripts"];
 
-
+			$this->SetAccount();
 			$this->CurrentBasicData = new CurrentBasicData();
 			$this->CurrentCV = new CurrentCV();
 			$this->CurrentProgramSelection = new CurrentProgramSelection();
@@ -129,9 +129,11 @@
 			$this->Database->GetLastHistory($account);
 		}
 
-		public function SetAccount($account)
+		public function SetAccount()
 		{
-			$this->currentaccount = $account;
+			session_start();
+			echo $_SESSION['currentAccount'];
+			$this->currentaccount = $_SESSION['currentAccount'];
 		}
 	}
 

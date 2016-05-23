@@ -4,7 +4,6 @@
 //負責管理帳號資料庫的部分
 	include_once "ConnectDB.php";
 	include_once "LogDB.php";
-	include_once "../ApplicationManager Sub-system/FillOutData.php";
 	class AccountDB
 	{
 		private $DataBase;
@@ -15,7 +14,6 @@
 		{
      		 $this->DataBase = new ConnectDB();
      		 $this->LogDataBase = new LogDB();
-     		 $this->FillOutData = new FillOutData();
    		}
    		function __destruct()
 		{
@@ -40,7 +38,11 @@
 			{
 				$this->LogDataBase->SaveLogInLog($account);
 				if($this->DataBase->DB_SelectAdministrator($command) == 0)
-					$this->FillOutData->SetAccount($account);
+				{
+					session_start();
+				    $_SESSION[currentAccount] = $account;// 寫入 Session 變數
+				    header("Location: ../ApplicationManager Sub-system/interface_FillForm.html"); //跳轉
+				}
 				return true;
 			}
 			else
