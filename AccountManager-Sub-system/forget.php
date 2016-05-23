@@ -12,10 +12,10 @@
 		{
 			if ( !( $database = mysql_connect( "localhost", "se", "se" ) ) )
 			die( "Could not connect to database </body></html>" );
-			if ( !mysql_select_db( "se", $database ) )
+			if ( !mysql_select_db( "se2", $database ) )
 			die( "Could not open products database </body></html>" );
 
-			$sql="SELECT `Email` FROM `accountdata` WHERE `Account`='".$account."'";	
+			$sql="SELECT `Email` FROM `account_data` WHERE `account`='".$account."'";	
 			$result=mysql_query($sql);	
 			$row_result=mysql_fetch_assoc($result);
 			if(isset($account))

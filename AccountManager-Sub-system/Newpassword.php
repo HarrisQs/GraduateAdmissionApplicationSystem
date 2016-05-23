@@ -10,11 +10,11 @@
 		Public function ResetPassword($account,$password)
 		{
 			
-			$query ="UPDATE `accountdata` SET `Password`= '" .$password. "' WHERE `Account`= '" .$account. "'";
+			$query ="UPDATE `account_data` SET `pass`= '" .$password. "' WHERE `account`= '" .$account. "'";
 			
 			if ( !( $database = mysql_connect( "localhost", "se", "se" ) ) )
 			die( "Could not connect to database </body></html>" );
-			if ( !mysql_select_db( "se", $database ) )
+			if ( !mysql_select_db( "se2", $database ) )
 			die( "Could not open products database </body></html>" );
 			if ( !( $result = mysql_query( $query, $database ) ) )
 			{
