@@ -27,15 +27,14 @@ Then you can use it in a web browser.
 
 * [How to change about file upload settings to satisify your need](http://newaurora.pixnet.net/blog/post/129561868-php%E6%AA%94%E6%A1%88%E4%B8%8A%E5%82%B3%E8%A8%AD%E5%AE%9A)
 * [Use JavaScript in PHP](http://css6.pixnet.net/blog/post/34226767-%E7%94%A8php%E7%9A%84%E6%96%B9%E5%BC%8F%E5%9F%B7%E8%A1%8Cjavascript)
+* [Three kinds allows web sites to automatically transfer method: HTML, Javascript, PHP](http://mepopedia.com/forum/read.php?30,2585)
+* [What does the PHP error message “Notice: Use of undefined constant” mean?](http://stackoverflow.com/questions/2941169/what-does-the-php-error-message-notice-use-of-undefined-constant-mean)
+* [Cookie and Session](http://ithelp.ithome.com.tw/articles/10157724)
 
 ## Tests
 
 Describe and show how to run the tests with code examples.
 
-## History
-
-* 2016/05/16 : Repository Sub-system is OK
-* 2016/05/18 : Write README
 
 ## Contributors
 
