@@ -19,7 +19,7 @@
 	header('Cache-Control: private', false);
 	header('Content-Type: application/octet-stream');
 	header('Content-Length: ' . $file_size);
-	header('Content-Disposition: attachment; filename="' . $file_name . '";');
+	header('Content-Disposition: attachment; filename="../Upload Sub-system/Upload File/' . $file_name . '";');
 	header('Content-Transfer-Encoding: binary');
 	readfile($file_path);
 ?>
