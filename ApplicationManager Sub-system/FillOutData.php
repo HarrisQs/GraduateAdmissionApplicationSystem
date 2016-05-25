@@ -66,17 +66,18 @@
 			$this->CurrentTeacherEmail = new CurrentTeacherEmail();
 			$this->CurrentTranscripts = new CurrentTranscripts();
 
-			$this->FillApplicationData($NAME,$EMAIL,$SCHOOL,$DEPARTMENT,$TRANSCRIPT,$TEACHEREMAIL,$SOP,$PROMGRAMSELECTION,$CV);
+			$this->FillApplicationData($NAME,$EMAIL,$SCHOOL,$DEPARTMENT,$FileName,$Filetype,$Filesize,$Filetmp,$Fileerr,$TEACHEREMAIL,$SOP,$PROMGRAMSELECTION,$CV);
 			$this->Database = new ApplicationDB();
 			$this->Database->GetLastHistory();
 		}
-		public function FillApplicationData($Name,$Email,$School,$Department,$Transcripts, $Teacheremail, $Sop, $Programselection, $Cv)
+		public function FillApplicationData($Name,$Email,$School,$Department,$Fn,$Ft,$Fs,$Ftm,$Fe,
+														$Teacheremail, $Sop, $Programselection, $Cv)
 		{
 			$this->SetName($Name,$this->currentaccount);
 			$this->SetEmail($Email,$this->currentaccount);
 			$this->SetSchool($School,$this->currentaccount);
 			$this->SetDepartment($Department,$this->currentaccount);
-			$this->SetTranscripts($Transcripts,$this->currentaccount);
+			$this->SetTranscripts($Fn,$Ft,$Fs,$Ftm,$Fe,$this->currentaccount);
 			$this->SetTeacherEmail($Teacheremail,$this->currentaccount);
 			$this->SetSOP($Sop,$this->currentaccount);
 			$this->SetProgramSelection($Programselection,$this->currentaccount);
@@ -145,7 +146,7 @@
 		{
 			session_start();
 			echo $_SESSION['currentAccount'];
-			$this->currentaccount = $_SESSION['currentAccount'];
+			@$this->currentaccount = $_SESSION['currentAccount'];
 		}
 	}
 

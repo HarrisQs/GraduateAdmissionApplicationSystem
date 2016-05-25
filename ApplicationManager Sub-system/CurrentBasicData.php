@@ -3,17 +3,17 @@
 	include_once "../Repository Sub-system/ApplicationDB.php";
 	class CurrentBasicData
 	{
-		private $Account;
-		private $Email;
-		private $Name;
-		private $School;
-		private $Department;
+		private $Account;	//使用者帳號
+		private $Email;		//信箱
+		private $Name;		//姓名
+		private $school;	//學校
+		private $Department;//系所
 
 		private $Database;
 
 		function __construct()
 		{
-			$this->Database = new ApplicationDB();
+			$this->Database = new ApplicationDB();	//Connect to database
 		}
 
 		public function SetAccount($account, $currentAccount)

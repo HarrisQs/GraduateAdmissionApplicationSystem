@@ -27,10 +27,10 @@
 			$this->FILESIZE = $filesize;
 			$this->FILETMP = $filetmp;
 			$this->FILEERR = $fileerr;
-			$this->Upload($this->FILENAME,$this->FILETYPE,$this->FILESIZE,$this->FILETMP,$this->FILEERR);
+			$this->Upload();
 		}
 
-		public function Upload($n,$t,$s,$tmp,$err)//檔名、類型、大小、路徑、上傳成功或失敗，判斷上傳檔案大小符合(<2MB才上傳)
+		public function Upload()//檔名、類型、大小、路徑、上傳成功或失敗，判斷上傳檔案大小符合(<2MB才上傳)
 		{
 			//$FileName=iconv('utf-8','big5',$_FILES[$this->Transcripts]["name"]);
 			if($this->FILEERR)
@@ -41,13 +41,13 @@
 					</script>';
 					return false;
 			}
-			if($FILESIZE/1024 > 2000)
+			if($this->FILESIZE/1024 > 2000)	//File size can't big than 2MB
 			{
 				echo "File too big, Pleaes trh another file or modify it.";
 				return false;
 			}
 
-			move_uploaded_file($this->FILETMP, "UploadFile/".$FILENAME); 
+			move_uploaded_file($this->FILETMP, "UploadFile/".$this->FILENAME); 
 			$this->Database->SaveTransrcipts($this->FILENAME,$this->Account);
 			return true;
 		}
