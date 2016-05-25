@@ -1,6 +1,7 @@
 <?php
 	include_once "../Repository Sub-system/AccountDB.php";
 	include_once "../Repository Sub-system/ConnectDB.php";
+	include_once "../Repository Sub-system/LogDB.php";
     $ID = $_POST["ID"];
     $password = $_POST["password"];
 	
@@ -11,6 +12,7 @@
 	{
 		private $DataBase;
 		private $Accountdata;
+		private $logdata;
 		function __construct() 
 		{
      		 //$this->AccountDB = new AccountDB();
@@ -21,10 +23,16 @@
 			
 			$this->Accountdata = new AccountDB();
 			$this->DataBase = new ConnectDB();
+			$this->logdata = new LogDB();
+			
+			
 			
 			$result = $this->Accountdata->ValidateAccount($ID,$password);
 			if($result)
+			{
 				echo "YES";
+				$this->logdata->SaveLogInLog($account);
+			}
 			else
 				echo "no";
 			

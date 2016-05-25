@@ -38,13 +38,24 @@
 			die( "Could not connect to database </body></html>" );
 			if ( !mysql_select_db( "se2", $database ) )
 			die( "Could not open products database </body></html>" );*/
-		
+		/*
 			if ( !($this->DataBase->DB_Insert($query)) )
 			{
 				mysql_error();
 			}
 			else
-			header("Location: ../index.html");
+				header("Location: ../index.html");*/
+			
+			$this->DataBase->DB_Insert($query);
+			echo '<script language="javascript">';
+			echo 'alert("註冊成功!請等3秒跳轉畫面")';
+			echo '</script>';	
+			
+			usleep(1000000);
+			echo '<meta http-equiv="refresh" content="2;url=../index.html" />';
+
+			//header("Location: ../index.html");
+			
 		}
 		Private function SetAccount($account)
 		{
