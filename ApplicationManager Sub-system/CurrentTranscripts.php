@@ -47,7 +47,7 @@
 				return false;
 			}
 
-			move_uploaded_file($this->FILETMP, "UploadFile/".$this->FILENAME); 
+			move_uploaded_file($this->FILETMP, "UploadFile/".$this->FILENAME); // put file into UploadFile Repository..
 			$this->Database->SaveTransrcipts($this->FILENAME,$this->Account);
 			return true;
 		}
