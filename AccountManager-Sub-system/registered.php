@@ -43,6 +43,8 @@
 			{
 				mysql_error();
 			}
+			else
+			header("Location: ../index.html");
 		}
 		Private function SetAccount($account)
 		{
