@@ -68,7 +68,7 @@
 
 			$this->FillApplicationData($NAME,$EMAIL,$SCHOOL,$DEPARTMENT,$FileName,$Filetype,$Filesize,$Filetmp,$Fileerr,$TEACHEREMAIL,$SOP,$PROMGRAMSELECTION,$CV);
 			$this->Database = new ApplicationDB();
-			$this->Database->GetLastHistory();
+			$this->Database->GetLastHistory($this->currentaccount);
 		}
 		public function FillApplicationData($Name,$Email,$School,$Department,$Fn,$Ft,$Fs,$Ftm,$Fe,
 														$Teacheremail, $Sop, $Programselection, $Cv)
@@ -145,7 +145,7 @@
 		public function SetAccount()
 		{
 			session_start();
-			echo $_SESSION['currentAccount'];
+			//echo $_SESSION['currentAccount'];
 			@$this->currentaccount = $_SESSION['currentAccount'];
 		}
 	}
