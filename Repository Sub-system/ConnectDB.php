@@ -4,7 +4,7 @@
 //負責與資料庫連接的部分
 	class ConnectDB //連接資料庫
 	{
-		private $db  = "20160525";
+		private $db  = "err";
 		private $server="127.0.0.1";
 		private $stduser="root";
 		private $stdpass= "software";
@@ -13,7 +13,7 @@
 		function __construct()//資料庫連接 建構子
 		{
 			$this->DBlink = @mysql_connect($this->server, $this->stduser, $this->stdpass)
-							or  $this->CatchError("無法連接資料庫,請檢查連線資訊!");
+							or  $this->CatchError("Can not connect to database, please try again!");
 			mysql_select_db($this->db);
 			mysql_query('set names utf8');//處理編碼問題
 		}

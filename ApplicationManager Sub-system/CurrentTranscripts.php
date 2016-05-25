@@ -2,7 +2,7 @@
 	include_once "../Repository Sub-system/ApplicationDB.php";
 	class CurrentTranscripts
 	{
-		private $Transcripts;
+		//private $Transcripts;
 		private $Account;
 
 		//檔案基本資訊
@@ -27,13 +27,13 @@
 			$this->FILESIZE = $filesize;
 			$this->FILETMP = $filetmp;
 			$this->FILEERR = $fileerr;
-			$this->Upload($this->Transcripts);
+			$this->Upload($this->FILENAME,$this->FILETYPE,$this->FILESIZE,$this->FILETMP,$this->FILEERR);
 		}
 
-		public function Upload($file)//上傳檔案，檢查是否錯誤以及檔案大小(>2MB不給船傳)
+		public function Upload($n,$t,$s,$tmp,$err)//檔名、類型、大小、路徑、上傳成功或失敗，判斷上傳檔案大小符合(<2MB才上傳)
 		{
-			$FileName=iconv('utf-8','big5',$_FILES[$this->Transcripts]["name"]);
-			if($_FILES[$file]["error"])
+			//$FileName=iconv('utf-8','big5',$_FILES[$this->Transcripts]["name"]);
+			if($this->FILEERR)
 			{
 				echo '<script type="text/javascript">
 						alert("Upload Fail!");
@@ -41,14 +41,14 @@
 					</script>';
 					return false;
 			}
-			if($_FILES[$file]["size"]/1024 > 2000)
+			if($FILESIZE/1024 > 2000)
 			{
-				echo "File too big";
+				echo "File too big, Pleaes trh another file or modify it.";
 				return false;
 			}
 
-			move_uploaded_file($_FILES[$file]["tmp_name"], "UploadFile/".$FileName); 
-			$this->Database->SaveTransrcipts($FileName,$this->Account);
+			move_uploaded_file($this->FILETMP, "UploadFile/".$FILENAME); 
+			$this->Database->SaveTransrcipts($this->FILENAME,$this->Account);
 			return true;
 		}
 	}
