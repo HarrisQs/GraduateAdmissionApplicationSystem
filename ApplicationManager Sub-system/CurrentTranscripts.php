@@ -5,6 +5,13 @@
 		private $Transcripts;
 		private $Account;
 
+		//檔案基本資訊
+		private $FILENAME;	//檔案名稱
+		private $FILETYPE;	//檔案類型
+		private $FILESIZE;	//檔案大小
+		private $FILETMP;	//檔案暫存資料夾路徑
+		private $FILEERR;	//檔案上傳成功/失敗(boolean)
+
 		private $Database;
 
 		function __construct()//連接資料庫
@@ -12,10 +19,14 @@
 			$this->Database = new ApplicationDB();
 		}
 
-		public function SetTranscripts($tra,$currentAccount)//Set帳號及檔案
+		public function SetTranscripts($filename,$filetype,$filesize,$filetmp,$fileerr,$currentAccount)//Set帳號及檔案
 		{
 			$this->Account = $currentAccount;
-			$this->Transcripts = $tra;
+			$this->FILENAME = $filename;
+			$this->FILETYPE = $filetype;
+			$this->FILESIZE = $filesize;
+			$this->FILETMP = $filetmp;
+			$this->FILEERR = $fileerr;
 			$this->Upload($this->Transcripts);
 		}
 

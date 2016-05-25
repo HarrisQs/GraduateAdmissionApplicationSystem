@@ -24,6 +24,13 @@
 		public $TRANSCRIPT;
 		public $currentaccount;
 
+		public $FileName;
+		public $Filetype;
+		public $Filesize;
+		public $Filetmp;
+		public $Fileerr;
+
+
 		private $Database;
 
 		private $CurrentBasicData;
@@ -36,15 +43,20 @@
 
 		function __construct()
 		{
-			$NAME = $_POST["name"];
-			$EMAIL = $_POST["email"];
-			$SCHOOL = $_POST["school"];
-			$DEPARTMENT = $_POST["department"];
-			$TEACHEREMAIL = $_POST["teacheremail"];
-			$SOP = $_POST["sop"];
-			$CV = $_POST["cv"];
-			$PROMGRAMSELECTION = $_POST["programselection"];
-			@$TRANSCRIPT = $_POST["transcripts"];
+			$NAME = $_POST["name"];//姓名 FROM HTML
+			$EMAIL = $_POST["email"];//信箱 FROM 
+			$SCHOOL = $_POST["school"];//就讀學校 FROM HTML
+			$DEPARTMENT = $_POST["department"];//系所 FROM HTML
+			$TEACHEREMAIL = $_POST["teacheremail"];//推薦教授信箱 FROM HTML
+			$SOP = $_POST["sop"];//動機簡述 FROM HTML
+			$CV = $_POST["cv"];//履歷 FROM HTML
+			$PROMGRAMSELECTION = $_POST["programselection"];//選擇申請系所 FROM HTML
+			//@$TRANSCRIPT = $_POST["transcripts"];//成績單 FROM HTML
+			$FileName = $_FILES["transcripts"]["name"];
+			$Filetype = $_FILES["transcripts"]["type"];
+			$Filesize = $_FILES["transcripts"]["size"];
+			$Filetmp = $_FILES["transcripts"]["tmp_name"];
+			$Fileerr = $_FILES["transcripts"]["error"];
 
 			$this->SetAccount();
 			$this->CurrentBasicData = new CurrentBasicData();
@@ -99,9 +111,9 @@
 			$this->CurrentBasicData->SetDepartment($d,$this->currentaccount);
 		}
 
-		private function SetTranscripts($tra, $currentAccount)//transcripts,account
+		private function SetTranscripts($Fname,$Ftype,$Fsize,$Ftmp,$Ferr, $currentAccount)//name,type,size,tmp,err,account
 		{
-			$this->CurrentTranscripts->SetTranscripts($tra,$this->currentaccount);
+			$this->CurrentTranscripts->SetTranscripts($Fname,$Ftype,$Fsize,$Ftmp,$Ferr,$this->currentaccount);
 		}
 
 		private function SetTeacherEmail($teacher, $currentAccount)//teacherEmail,account

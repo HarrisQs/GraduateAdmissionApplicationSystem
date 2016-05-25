@@ -4,7 +4,7 @@
 //負責與資料庫連接的部分
 	class ConnectDB //連接資料庫
 	{
-		private $db  = "err";
+		private $db  = "20160525";
 		private $server="127.0.0.1";
 		private $stduser="root";
 		private $stdpass= "software";
