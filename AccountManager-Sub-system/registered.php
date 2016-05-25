@@ -1,7 +1,8 @@
 <?php
 	
 	include_once "../ApplicationManager Sub-system/CurrentBasicData.php";
-    
+    include_once "../Repository Sub-system/ConnectDB.php";
+	
     $account = $_POST["ID"];
     $UserName = $_POST["Name"];
     $password = $_POST["password"];
@@ -14,6 +15,7 @@
 	$register->RegistNewAccount($account,$password,$email,$UserName,$school,$department,$other);
 	class RegisterAccount
 	{
+		private $DataBase;
 		function __construct() 
 		{
      		 //$this->NewAccount = new CurrentBasicData();
@@ -29,17 +31,18 @@
 			//NewAccount.saveToDB();
 			
 			$query = "INSERT INTO `account_data` ( `account`, `pass` , `Email` , `UserName` , `School`, `Department`,`Other`,`IsAdministator`,`IsUsed` ) VALUES ( '" . $account  . "', '" . $password . "', '" . $email . "', '" . $UserName . "', '" . $school . "', '" . $department . "', '" . $other . "', '0', '0' )"  ;    
-			if ( !( $database = mysql_connect( "localhost", "se", "se" ) ) )
+			
+			$this->DataBase = new ConnectDB();
+			
+			/*if ( !( $database = mysql_connect( "localhost", "se", "se" ) ) )
 			die( "Could not connect to database </body></html>" );
 			if ( !mysql_select_db( "se2", $database ) )
-			die( "Could not open products database </body></html>" );
-			if ( !( $result = mysql_query( $query, $database ) ) )
+			die( "Could not open products database </body></html>" );*/
+		
+			if ( !($this->DataBase->DB_Insert($query)) )
 			{
-				print( "<p>Could not execute query!</p>" );
-				die( mysql_error() . "</body></html>" );
+				mysql_error();
 			}
-			mysql_close( $database );
-					
 		}
 		Private function SetAccount($account)
 		{

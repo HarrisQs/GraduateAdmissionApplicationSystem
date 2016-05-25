@@ -4,10 +4,10 @@
 //負責與資料庫連接的部分
 	class ConnectDB //連接資料庫
 	{
-		private $db  = "20160525";
+		private $db  = "err";
 		private $server="127.0.0.1";
 		private $stduser="root";
-		private $stdpass= "";
+		private $stdpass= "software";
 		private $DBlink;
 
 		function __construct()//資料庫連接 建構子
@@ -55,7 +55,7 @@
        		@mysql_db_query($this->db, $SQL) or $this->CatchError("資料庫名稱或指令敘述錯誤!");
 		}
 		public function DB_Insert($SQL)//DB Update command
-		{	echo $SQL;
+		{	//echo $SQL;
        		@mysql_db_query($this->db, $SQL) or $this->CatchError("資料庫名稱或指令敘述錯誤!");
 		}
 		private function CatchError($Error)//處裡連接資料庫發生的錯誤
