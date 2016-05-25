@@ -28,7 +28,15 @@
 				echo "更改成功";
 			else 
 				echo "更改失敗，請再試一次";
+			echo "<br>此頁面將於五秒後跳轉至首頁。";
 		}
 	}
 ?>
 
+
+<html>   
+<head> 
+<meta http-equiv="refresh" content="5;url=<?php echo 'ReviewIndex.php'; ?>">   
+</head>   
+
+</html>
