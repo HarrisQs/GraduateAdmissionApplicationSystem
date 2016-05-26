@@ -1,5 +1,4 @@
 <?php
-	echo $_GET['object'];
 	switch($_GET['object'])
 	{
 		case 1:
