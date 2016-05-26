@@ -9,8 +9,8 @@
 	}
 
 	$file_name = $download_file;
-	$file_path = "../Upload Sub-system/Upload File/" . $download_file;
-	$file_size = filesize($file_path);
+	$file_path = "../Upload Sub-system/Upload File/". $download_file;
+	$file_size = filesize(mb_convert_encoding($file_path , "BIG5"));
 	header('Pragma: public');
 	header('Expires: 0');
 	header('Last-Modified: ' . gmdate('D, d M Y H:i ') . ' GMT');
@@ -19,6 +19,6 @@
 	header('Content-Type: application/octet-stream');
 	header('Content-Length: ' . $file_size);
 	header('Content-Disposition: attachment; filename="' . $file_name . '";');
-	header('Content-Transfer-Encoding: binary');
-	readfile($file_path);
+	header('Content-Transfer-Encoding: big_chinese_ci');
+	readfile(mb_convert_encoding($file_path , "BIG5"));
 ?>
