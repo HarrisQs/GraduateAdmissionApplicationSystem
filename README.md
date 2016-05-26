@@ -35,6 +35,9 @@ Then you can use it in a web browser.
 
 Describe and show how to run the tests with code examples.
 
+##FAQ
+* If database can not save and show chinese, you can try to change encoding to **big5chinese**.
+
 
 ## Contributors
 
