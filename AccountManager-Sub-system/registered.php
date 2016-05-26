@@ -2,6 +2,7 @@
 	
 	include_once "../ApplicationManager Sub-system/CurrentBasicData.php";
     include_once "../Repository Sub-system/ConnectDB.php";
+    include_once "../Repository Sub-system/AccountDB.php";
 	
     $account = $_POST["ID"];
     $UserName = $_POST["Name"];
@@ -16,6 +17,7 @@
 	class RegisterAccount
 	{
 		private $DataBase;
+		private AccountDB;
 		function __construct() 
 		{
      		 //$this->NewAccount = new CurrentBasicData();
@@ -33,6 +35,7 @@
 			$query = "INSERT INTO `account_data` ( `account`, `pass` , `Email` , `UserName` , `School`, `Department`,`Other`,`IsAdministator`,`IsUsed` ) VALUES ( '" . $account  . "', '" . $password . "', '" . $email . "', '" . $UserName . "', '" . $school . "', '" . $department . "', '" . $other . "', '0', '0' )"  ;    
 			
 			$this->DataBase = new ConnectDB();
+			$this->AccountDB = new AccountDB();
 			
 			/*if ( !( $database = mysql_connect( "localhost", "se", "se" ) ) )
 			die( "Could not connect to database </body></html>" );
@@ -45,14 +48,22 @@
 			}
 			else
 				header("Location: ../index.html");*/
-			
-			$this->DataBase->DB_Insert($query);
-			echo '<script language="javascript">';
-			echo 'alert("註冊成功!請等3秒跳轉畫面")';
-			echo '</script>';	
-			
-			usleep(1000000);
-			echo '<meta http-equiv="refresh" content="2;url=../index.html" />';
+			if($this->AccountDB->AddNewAccount($account))
+			{
+				$this->DataBase->DB_Insert($query);
+				echo '<script language="javascript">';
+				echo 'alert("註冊成功!請等3秒跳轉畫面")';
+				echo '</script>';	
+				
+				usleep(1000000);
+				echo '<meta http-equiv="refresh" content="2;url=../index.html" />';
+			}
+			else
+			{
+				echo '<script language="javascript">';
+				echo 'alert("註冊失敗，請檢查輸入的資訊")';
+				echo '</script>';
+			}
 
 			//header("Location: ../index.html");
 			
