@@ -17,7 +17,7 @@
 	class RegisterAccount
 	{
 		private $DataBase;
-		private AccountDB;
+		private $AccountDB;
 		function __construct() 
 		{
      		 //$this->NewAccount = new CurrentBasicData();
@@ -63,6 +63,8 @@
 				echo '<script language="javascript">';
 				echo 'alert("註冊失敗，請檢查輸入的資訊")';
 				echo '</script>';
+
+				echo '<meta http-equiv="refresh" content="2;url=registered.html" />';
 			}
 
 			//header("Location: ../index.html");
