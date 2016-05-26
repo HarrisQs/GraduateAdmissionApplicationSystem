@@ -48,6 +48,16 @@
 			else
 				return false;
 		}
+		public function ValidateEmail($account, $Email)//驗證帳號密碼
+		{
+			$command = "select IsAdministator from account_data where account='$account' And Email='$Email'";//
+			if($this->DataBase->DB_SelectBool($command))
+			{
+				return true;
+			}
+			else
+				return false;
+		}
 		public function SetNewPassword($account, $password)//更新密碼
 		{
 			$command = "update account_data SET pass='$password' WHERE  account='$account'";
