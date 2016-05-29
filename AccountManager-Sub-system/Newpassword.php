@@ -13,7 +13,15 @@
 			
 			$query ="UPDATE `account_data` SET `pass`= '" .$password. "' WHERE `account`= '" .$account. "'";
 			$this->DataBase = new ConnectDB();
-			$this->DataBase->DB_Insert($query);
+			$this->DataBase->DB_Update($query);
+			
+			
+					echo '<script language="javascript">';
+					echo 'alert("更改成功!請等3秒後跳轉頁面")';
+					echo '</script>';	
+				
+					usleep(1000000);
+					echo '<meta http-equiv="refresh" content="2;url=../index.html" />';
 			
 			/*
 			if ( !( $database = mysql_connect( "localhost", "se", "se" ) ) )

@@ -3,7 +3,7 @@
 	include_once "../ApplicationManager Sub-system/CurrentBasicData.php";
     include_once "../Repository Sub-system/ConnectDB.php";
     include_once "../Repository Sub-system/AccountDB.php";
-	
+	//UPDATE account_data SET IsAdministator = '1' WHERE account = 'miranda' <-更改使用者權限
     $account = $_POST["ID"];
     $UserName = $_POST["Name"];
     $password = $_POST["password"];
