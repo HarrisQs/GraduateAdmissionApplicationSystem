@@ -27,7 +27,6 @@
 			}
 			else//帳號可以使用 新增帳號可能要再登入那邊做 因為這邊沒有全部的參數
 			{
-				//$command = "INSERT INTO account_data (ID, UserName, Password, Email)VALUES ('900', 'Los Angeles', '10', 'Jan-10-1999');";
 				return true;		
 			}
 		}
