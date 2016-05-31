@@ -1,5 +1,7 @@
 <?php
+    include_once"../Repository Sub-system/ConnectDB.php";
 	session_start();
+    $connectDB = new ConnectDB();
 	$index = $_GET['index'];
 	$currentApplication = $_SESSION['application_list'];
 	$_SESSION['index'] = $index;
@@ -71,23 +73,27 @@
                     <div class="12u">
                         <section>
                             <header>
-                                <h2>for student</h2>
+                                <h2>for teacher</h2>
                                 <span class="byline">
-                                <?php 
-		echo "學校: ";print_r($currentApplication[$index]["School"]);
-		echo "<br>系所: ";print_r($currentApplication[$index]["Department"]);
-		echo "<br>姓名: ";print_r($currentApplication[$index]["Name"]);
-		echo "<br>CV: ";print_r($currentApplication[$index]["CV"]);
-		echo "<br>SOP: ";print_r($currentApplication[$index]["SOP"]);
-		echo "<br>Program Selection:";print_r($currentApplication[$index]["ProgramSelection"]);
+        <?php 
+        $jsonResult = $connectDB->DB_SelectString("select School from account_data where account='".$currentApplication[$index]["account"]."'");
+        $jsonResult = json_decode($jsonResult[0]);
+		echo "<br><p>學校: ".$jsonResult->School;
+        $jsonResult = $connectDB->DB_SelectString("select Department from account_data where account='".$currentApplication[$index]["account"]."'");
+        $jsonResult = json_decode($jsonResult[0]);
+		echo "<br><p>系所: ".$jsonResult->Department;
+		echo "<br><p>姓名: ";print_r($currentApplication[$index]["Name"]);
+		echo "<br><p>C&nbsp;&nbsp;V:  ";print_r($currentApplication[$index]["CV"]);
+		echo "<br><p>SOP: ";print_r($currentApplication[$index]["SOP"]);
+		echo "<br><p>Program Selection: ";print_r($currentApplication[$index]["ProgramSelection"]);
 	?>
-	<br>
-	<a target='_blank' href='Writemail.php'>寄信給推薦教授</a><br>
-	<a href='Download.php?object=1'>下載成績單</a><br>
+	<br><p>
+	<a target='_blank' href='Writemail.php'>寄信給推薦教授</a><br><p>
+	<a href='Download.php?object=1'>下載成績單</a><br><p>
 	<a href='Download.php?object=2'>下載推薦信</a>
-	</body>
+	
 	<?php 
-		echo "<br>申請書狀態: ";
+		echo "<br><p>申請書狀態: ";
 		switch($currentApplication[$index]["Status"])
 		{
 			case '0':
@@ -112,9 +118,13 @@
           <option value="Change_Stautus_Fail">不通過</option>
           <option value="Change_status_NotReview">尚未審查</option>
         </select>
-      <input type="submit" >
+        <br>
+      <input class="button" type="submit" >
     </form>
-	<a href = "ReviewIndex.php">回到首頁</a>
+    <br>
+	                               <div style="width:300px;height:20px;margin:0 auto;">
+                                <a class="button" href = "ReviewIndex.php">回到首頁</a>
+　                               </div>
                                 </span>
                             </header>
                             <p>....</p>
@@ -123,6 +133,7 @@
                     
                 </div>
             </div>
+        </body>
             <!-- Main -->
             
         </div>
