@@ -4,6 +4,7 @@
 	$currentApplication = $_SESSION['application_list'];
 	$_SESSION['index'] = $index;
 	$currentApplication = unserialize($currentApplication);
+    $_SESSION['TeacherEmail'] = $currentApplication[$index]["TeacherEmail"];
 	setcookie('Transcipts_name',$currentApplication[$index]["Transcipts"]);
 	setcookie('Letter_name',$currentApplication[$index]["RecommendationLetter"]);
 ?>
@@ -81,7 +82,7 @@
 		echo "<br>Program Selection:";print_r($currentApplication[$index]["ProgramSelection"]);
 	?>
 	<br>
-	<a target='_blank' href='mailto:<?php print_r($currentApplication[$index]["TeacherEmail"]);?>'>寄信給推薦教授</a><br>
+	<a target='_blank' href='Writemail.php'>寄信給推薦教授</a><br>
 	<a href='Download.php?object=1'>下載成績單</a><br>
 	<a href='Download.php?object=2'>下載推薦信</a>
 	</body>
