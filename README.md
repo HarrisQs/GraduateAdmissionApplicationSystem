@@ -30,10 +30,14 @@ Then you can use it in a web browser.
 * [Three kinds allows web sites to automatically transfer method: HTML, Javascript, PHP](http://mepopedia.com/forum/read.php?30,2585)
 * [What does the PHP error message “Notice: Use of undefined constant” mean?](http://stackoverflow.com/questions/2941169/what-does-the-php-error-message-notice-use-of-undefined-constant-mean)
 * [Cookie and Session](http://ithelp.ithome.com.tw/articles/10157724)
+* [如何把php界面的值傳給另一個php頁面](http://blog.sina.com.cn/s/blog_906a5acc0100xq9k.html)
 
 ## Tests
 
 Describe and show how to run the tests with code examples.
+
+##FAQ
+* If database can not save and show chinese, you can try to change encoding to **big5chinese**.
 
 
 ## Contributors

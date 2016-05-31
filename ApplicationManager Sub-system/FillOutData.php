@@ -1,4 +1,5 @@
 <?php
+$url = "http://google.com";
 //2016
 //Coding by Rita
 //分配進來的資料到不同Class做處理
@@ -68,7 +69,7 @@
 
 			$this->FillApplicationData($NAME,$EMAIL,$SCHOOL,$DEPARTMENT,$FileName,$Filetype,$Filesize,$Filetmp,$Fileerr,$TEACHEREMAIL,$SOP,$PROMGRAMSELECTION,$CV);
 			$this->Database = new ApplicationDB();
-			$this->Database->GetLastHistory($this->currentaccount);
+			// $this->Database->GetLastHistory($this->currentaccount);
 		}
 		public function FillApplicationData($Name,$Email,$School,$Department,$Fn,$Ft,$Fs,$Ftm,$Fe,
 														$Teacheremail, $Sop, $Programselection, $Cv)
@@ -89,6 +90,8 @@
 			$this->CurrentSOP->SaveToDB();
 			$this->CurrentTeacherEmail->SaveToDB();
 			$this->CurrentTranscripts->Upload();
+			//header("Location: ../ApplicationManager Sub-system/interface_FillForm.html");
+			header("Location: checkpage.html");
 		}
 
 
