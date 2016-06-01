@@ -74,7 +74,7 @@
 
 					$mail->Subject = "Change New Password!"; 
 					// 信件標題
-					$mail->Body = "Hi ".$account.", please click this web to change your new password :http://10.211.55.3:8000/GA/AccountManager-Sub-system/newpassword.html ";
+					$mail->Body = "Hi ".$account.", please click this web to change your new password :http://harris32916.no-ip.org/GraduateAdmissionApplicationSystem/AccountManager-Sub-system/newpassword.html ";
 					//信件內容(html版，就是可以有html標籤的如粗體、斜體之類)
 					$mail->AltBody = "信件內容"; 
 					//信件內容(純文字版)
