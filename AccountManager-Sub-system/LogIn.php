@@ -34,7 +34,12 @@
 				$this->logdata->SaveLogInLog($account);
 			}
 			else
-				echo "no";
+				echo '<script language="javascript">';
+					echo 'alert("登入失敗!請重新登入")';
+					echo '</script>';	
+				
+					usleep(100000);
+					echo '<meta http-equiv="refresh" content="2;url=../index.html" />';
 			
 		}
 	}
