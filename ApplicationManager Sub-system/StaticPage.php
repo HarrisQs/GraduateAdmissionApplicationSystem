@@ -1,30 +1,57 @@
 <!DOCTYPE HTML>
 <?php
-	$currentAccount = "Rita1234";
+	session_start();
+	$currentaccount = $_SESSION['currentAccount'];
 	include_once "../Repository Sub-system/ApplicationDB.php";
 	$Database = new ApplicationDB();
-	$DE;
-	//var_dump(json_decode('{"foo":"bar","aaa":"bbb"}'));
-	//echo $DE['foo'];
-	$DE = $Database->GetLastHistory("Rita1234");
-	//echo $DE;
-	//echo $DE;
-	$DE = str_replace(']', '', $DE);
-	$DE = str_replace('[', '', $DE);
-	$DE = str_replace('\"', '"', $DE);
-	$DE[0]='\'';
-	$DE[256]='\'';
-	echo $DE;
-	var_dump(json_decode($DE));
-	//echo $DE[0];
-	//echo $Database->GetLastHistory("Rita1234");
-	//echo $DE[0];
-	if($Database->GetLastHistory($currentAccount)=="You don’t have last history")
-		echo "Test OK";
+	$ConnDB = new ConnectDB();
+
+
+
+	//$DE = $Database->GetLastHistory("Rita1234");
+
+	if($Database->GetLastHistory($currentaccount)=="You don’t have last history")
+		header("Location: ../ApplicationManager Sub-system/interface_FillForm.html");
 	else
+	{
+		$jsonResult = $ConnDB->DB_SelectString("select * from application_data where account= '$currentaccount' ");
+		foreach($jsonResult as $key => $Value) //將json型態的array轉為php可用的array
+		{
+
+		    $jsonResult[$key] = json_decode($Value, true); 
+		}	
+		$userSchool = $jsonResult[0]["School"];
+		$userEmail = $jsonResult[0]["Email"];
+		$userName = $jsonResult[0]["Name"];
+		$userDepartment = $jsonResult[0]["Department"];
+		$userCV = $jsonResult[0]["CV"];
+		$userSOP = $jsonResult[0]["SOP"];
+		$userTeacher = $jsonResult[0]["TeacherEmail"];
+		$userProgramSelection = $jsonResult[0]["ProgramSelection"];
+		$userTranscript = $jsonResult[0]["Transcipts"];
+		$userReLetter = $jsonResult[0]["RecommendationLetter"];
+		$userStatus = $jsonResult[0]["Status"];
+
+		switch ($userStatus) 
+	{
+		case '0':
+			$userStatus = '未送出';
+			break;
+		case '1':
+			$userStatus = '代批閱';
+			break;
+		case '2':
+			$userStatus = '審核通過';
+			break;
+		case '3':
+			$userStatus = '審核未通過';	
+			break;	
+		default:
+			# code...
+			break;
+	}
+	}
 ?>
-
-
 <html>
     <head>
         <title>Software Engineering</title>
@@ -101,8 +128,7 @@
                                         <TR>
                                             <TD bgcolor='#5555FF' valign='center' align='center' height='32'>
                                             <font color="#DDDDDD">學生姓名</font></TD>
-                                            <?php echo "asmdklajskdj"?>
-                                            <TD bgcolor='#009FCC' align='center'><?php echo "asmdklajskdj"?>;
+                                            <TD bgcolor='#009FCC' align='center'><?php echo $userName?>
                                         </TR>
 
 
@@ -110,24 +136,22 @@
                                             <TD align='center' height='32'>
                                             <font color="#DDDDDD">電子信箱</font>
                                             </TD >
-                                            <TD  bgcolor='#009FCC' align='center'>&nbsp;
-                                            <INPUT name='email' type='text' size='20'></TD>
+                                            <TD bgcolor='#009FCC' align='center'><?php echo $userEmail?>
                                         </TR>
 
                                         <TR bgcolor='#5555FF' valign='center'>
                                                 <TD align='center' height='32'>
                                                 <font color="#DDDDDD">學校</font>
                                                 </TD>
-                                                <TD bgcolor='#009FCC' align='center'>&nbsp;
-                                                <INPUT name='school' type='text' size='20'></TD>
+                                                <TD bgcolor='#009FCC' align='center'><?php echo $userSchool?>
+                                               
                                         </TR>
 
                                         <TR bgcolor='#5555FF' valign='center'>
                                                 <TD align='center' height='32'>
                                                 <font color="#DDDDDD">系所</font>
                                                 </TD>
-                                                <TD bgcolor='#009FCC' align='center'>&nbsp;
-                                                <INPUT name='department' type='text' size='20'></TD>
+                                                <TD bgcolor='#009FCC' align='center'><?php echo $userDepartment?>
                                         </TR>
 
 
@@ -149,8 +173,7 @@
                                             <TD align='center' height='32'>
                                             <font color="#DDDDDD">教授電子信箱</font>
                                             </TD>
-                                            <TD  bgcolor='#009FCC' align='center'>&nbsp;
-                                            <INPUT name='teacheremail' type='text' size='20'></TD>
+                                            <TD bgcolor='#009FCC' align='center'><?php echo $userTeacher?>
                                         </TR>
 
 
@@ -158,38 +181,39 @@
                                             <TD align='center' height='32'>
                                             <font color="#DDDDDD">動機簡述</font>
                                             </TD>
-                                            <TD bgcolor='#009FCC' align='center'>&nbsp;
-                                            <textarea cols="50" rows="2" INPUT name='sop'></textarea></TD>
+                                            <TD bgcolor='#009FCC' align='center'><?php echo $userSOP?>
                                         </TR>
 
                                         <TR bgcolor='#5555FF' valign='center'>
                                             <TD align='center' height='32'>
                                             <font color="#DDDDDD">申請系所</font>
                                             </TD>
-                                            <TD  bgcolor='#009FCC' align='center'>&nbsp;
-                                            <INPUT name='programselection' type='text' size='20'></TD>
+                                            <TD bgcolor='#009FCC' align='center'><?php echo $userProgramSelection?>
                                         </TR>
 
                                         <TR bgcolor='#5555FF' >
                                             <TD align='center' height='10'>
                                             <font color="#DDDDDD">自傳</font>
                                             </TD>
-                                            <TD bgcolor='#009FCC' align='center'>
-                                            <textarea cols="50" rows="5" INPUT name='cv' type='text' size='20'></textarea></TD>
+                                            <TD bgcolor='#009FCC' align='center'><?php echo $userCV?>
                                         </TR>
 
                                         <TR bgcolor='#5555FF' valign='center'>
                                             <TD align='center' height='32'>
                                             <font color="#DDDDDD">上傳成績單</font>
                                             </TD>
-                                            <TD  bgcolor='#009FCC' align='center' >&nbsp;
-                                            <input type="file" name="transcripts"/>
+                                            <TD bgcolor='#009FCC' align='center'><?php echo $userTranscript?>
+                                        </TR>
+
+                                        <TR bgcolor='#5555FF' valign='center'>
+                                            <TD align='center' height='32'>
+                                            <font color="#DDDDDD">審查狀態</font>
+                                            </TD>
+                                            <TD bgcolor='#009FCC' align='center'><?php echo $userStatus?>
                                         </TR>
 
                                     </TABLE>
                                     </CENTER>
-                                    
-                                        <CENTER><INPUT name='btnOK' class="button" type='submit' value='送出'></CENTER>
                                     
                                 </FORM>
                                 <!-- </span> -->

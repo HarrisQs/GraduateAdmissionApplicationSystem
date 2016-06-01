@@ -39,7 +39,7 @@
 				session_start();
 				    $_SESSION[currentAccount] = $account;// 寫入 Session 變數
 				if($this->DataBase->DB_SelectAdministrator($command) == 0)
-				    header("Location: ../ApplicationManager Sub-system/interface_FillForm.html"); //跳轉
+				    header("Location: ../ApplicationManager Sub-system/StaticPage.php"); //跳轉
 				else
 					header("Location: ../ReviewApplication%20Sub-system/ReviewIndex.php");
 				return true;

@@ -90,8 +90,8 @@ $url = "http://google.com";
 			$this->CurrentSOP->SaveToDB();
 			$this->CurrentTeacherEmail->SaveToDB();
 			$this->CurrentTranscripts->Upload();
-			//header("Location: ../ApplicationManager Sub-system/interface_FillForm.html");
-			header("Location: checkpage.html");
+
+			header("Location: ../ApplicationManager Sub-system/StaticPage.php");
 		}
 
 
