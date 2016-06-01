@@ -97,7 +97,7 @@
 		switch($currentApplication[$index]["Status"])
 		{
 			case '0':
-				echo "未送出";
+				echo "尚未審查";
 				break;
 			case '1':
 				echo "尚未審查";

@@ -1,0 +1,197 @@
+body{
+	font-family: Arial, Helvetica, "Trebuchet MS";
+}
+
+input{
+  font: 12px/100% Verdana, sans-serif;
+  color: #494949;
+}
+
+a.TopButtons, a.TopButtons:visited {
+
+	-moz-border-radius:3px 3px 3px 3px;
+	background:none repeat scroll 0 0 #000000;
+	color:#FFFFFF;
+	float:left;
+	font-family:helvetica,arial,sans-serif;
+	font-size:13px;
+	font-weight:700;
+	margin:0 1px 30px;
+	padding:12px 15px;
+	text-align:center;
+	text-decoration:none;
+	text-shadow:none;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	-webkit-transition:all 0.1s ease-in-out;
+	width:120px;
+}
+a.TopButtons:hover {
+
+	text-shadow:none;
+	text-align:center;
+	font-family:helvetica, arial, sans-serif;
+	color:#fff;
+	font-size:13px;
+	background:#006699;
+	text-decoration:none;
+	font-weight:700;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	-webkit-transition:all 0.1s ease-in-out;
+}
+
+.module-bg {
+	left:0;
+	margin:0;
+	opacity:0.85;
+	padding:0;
+	position:absolute;
+	top:5px;
+	height:43px;
+	width:304px;
+	z-index:1;
+}
+
+#nav-bar {
+	font-size:14px;
+	font-weight:500;
+	display:none;
+	height:40px;
+	left:30%;
+	position:fixed;
+	line-height:18px;
+}
+#login{
+	/* for firefox, safari, chrome, etc. */
+	-webkit-transform: rotate(-60deg);
+	-moz-transform: rotate(-60deg);
+	left:0px;
+	cursor:pointer;
+	top:60px;
+	display:none;
+	position:absolute;
+	/* for ie */
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+#submit{
+	/* for firefox, safari, chrome, etc. */
+	-webkit-transform: rotate(-60deg);
+	-moz-transform: rotate(-60deg);
+	left:0px;
+	cursor:pointer;
+	top:80px;
+	display:none;
+	position:absolute;
+	/* for ie */
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+div{
+	font-size: 14px;
+	font-family: Arial, Helvetica, "Trebuchet MS";
+}
+
+input.form-text{
+	border: 4px solid #c0d679;
+	padding:4px 10px;
+	font-size: 15px;
+	font-family: Arial, Helvetica, "Trebuchet MS";
+}
+
+input.form-text:focus{
+	background:#ddedbb;
+	border-color: #70a405;
+}
+
+html.js input.form-autocomplete{
+	width:95%;
+}
+
+a.login{
+	display: block;
+	float: right;
+	font-family:"Trebuchet MS",Arial;
+	font-size:13px;
+	text-decoration:none;
+	padding: 6px 12px 6px 12px;
+	font-weight: bold;
+	color: #266b5d;
+	font-variant: small-caps;
+}
+
+a.login:hover, a.logout:hover{
+	color: #1d2920;
+}
+
+#Login_form{background: transparent url(login_pop.png) no-repeat top center;}
+#SignupForm{background: transparent url(signup_pop.png) no-repeat top center;}
+
+div.loginform{
+	top:0px;
+	left:30%;
+	height:350px;
+	position:fixed;
+	display:none;
+	width:305px;
+}
+
+.loginform form{
+	padding:23px;
+	position:relative;
+	*padding-top:33px;
+	*padding-bottom:28px;
+	*overflow: inherit;
+	_padding-top:30px;
+	_height:1%;
+}
+
+.loginform .item-list{
+	padding-top: 7px;
+	overflow: hidden;
+	_padding-top:15px;
+}
+
+.loginform .form-item{
+	overflow: hidden;
+	margin: 13px 0px;
+	clear: both;
+	_padding:4px 0px;
+	_margin:0px;
+}
+
+.loginform .form-item label{
+	float: left;
+	color: #5c7a72;
+	font-size: 13px;
+	padding-top: 6px;
+}
+
+.loginform .form-item input.form-text{
+	border-width: 1px;
+	background: #eff7f9;
+	float: right;
+	width:156px;
+}
+
+.loginform .form-item input.form-text:hover, .loginform .form-item input.form-text:focus{
+	background: #FFF;
+}
+
+.loginform .form-submit{
+	background:transparent url(images/login_btn.gif) no-repeat center;
+	padding: 3px 4px;
+	float: right;
+	font-variant: small-caps;
+	font-family: Arial, "Trebuchet MS", Helvetica;
+	color: #e5eae9;
+	border: none;
+	width:72px;
+	height: 27px;
+}
+
+.loginform .form-submit:hover{
+	color: #FFF;
+	background:url(images/login_btn_o.gif);
+}
