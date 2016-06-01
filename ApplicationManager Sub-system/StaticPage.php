@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
-<!--
-	Ex Machina by TEMPLATED
- templated.co @templatedco
- Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
- -->
+<?php
+	include_once "../Repository Sub-system/ApplicationDB.php";
+	$this->Database = new ApplicationDB();
+	$this->Database->GetLastHistory();
+?>
 <html>
     <head>
         <title>Software Engineering</title>
@@ -80,8 +80,8 @@
                                         <TR>
                                             <TD bgcolor='#5555FF' valign='center' align='center' height='32'>
                                             <font color="#DDDDDD">學生姓名</font></TD>
-                                            <TD bgcolor='#009FCC' align='center'>&nbsp;
-                                            <INPUT name='name' type='text' size='20'></TD>
+                                            <?php echo "asmdklajskdj"?>
+                                            <TD bgcolor='#009FCC' align='center'><?php echo "asmdklajskdj"?>;
                                         </TR>
 
 
