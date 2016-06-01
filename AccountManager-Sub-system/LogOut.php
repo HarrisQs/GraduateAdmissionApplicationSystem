@@ -5,7 +5,7 @@
     $account = $_POST["ID"];
 	
 	$logout = new LogOut();
-	$logout->LoginSystem($account);
+	$logout->LogoutSystem($account);
 	
 	
 	class LogOut
@@ -28,7 +28,7 @@
 			else
 				echo "fail";
 			
-			$this->Accountdata = new AccountDB();
+			$this->logdata = new LogDB();
 		}
 		Private function SaveLogoutLog($account)
 		{
