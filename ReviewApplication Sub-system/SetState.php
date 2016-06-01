@@ -46,8 +46,8 @@
                 <!-- Nav -->
                 <nav id="nav">
                     <ul>
-                        <li><a href="../AccountManager-Sub-system/index.html">sign out</a></li>
-                        <li class="active"><a href="teacher.html">Teacher</a></li>
+                        <li><a href="../AccountManager-Sub-system/LogOut.php">sign out</a></li>
+                        <li class="active"><a href="Reviewindex.php">Teacher</a></li>
                     </ul>
                 </nav>
                 
