@@ -127,7 +127,7 @@
 　                               </div>
                                 </span>
                             </header>
-                            <p>....</p>
+                            <p></p>
                         </section>
                     </div>
                     
