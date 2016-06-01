@@ -27,7 +27,6 @@
 			}
 			else//帳號可以使用 新增帳號可能要再登入那邊做 因為這邊沒有全部的參數
 			{
-				//$command = "INSERT INTO account_data (ID, UserName, Password, Email)VALUES ('900', 'Los Angeles', '10', 'Jan-10-1999');";
 				return true;		
 			}
 		}
@@ -43,6 +42,16 @@
 				    header("Location: ../ApplicationManager Sub-system/interface_FillForm.html"); //跳轉
 				else
 					header("Location: ../ReviewApplication%20Sub-system/ReviewIndex.php");
+				return true;
+			}
+			else
+				return false;
+		}
+		public function ValidateEmail($account, $Email)//驗證帳號密碼
+		{
+			$command = "select IsAdministator from account_data where account='$account' And Email='$Email'";//
+			if($this->DataBase->DB_SelectBool($command))
+			{
 				return true;
 			}
 			else

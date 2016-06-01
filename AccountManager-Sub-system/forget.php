@@ -74,7 +74,7 @@
 
 					$mail->Subject = "Change New Password!"; 
 					// 信件標題
-					$mail->Body = "please click this web to change your new password :http://10.211.55.3:8000/GA/AccountManager-Sub-system/newpassword.html ";
+					$mail->Body = "Hi ".$account.", please click this web to change your new password :http://10.211.55.3:8000/GA/AccountManager-Sub-system/newpassword.html ";
 					//信件內容(html版，就是可以有html標籤的如粗體、斜體之類)
 					$mail->AltBody = "信件內容"; 
 					//信件內容(純文字版)
@@ -84,7 +84,13 @@
 					//如果有錯誤會印出原因
 					}
 					else{ 
-					echo "寄信成功";
+					
+					echo '<script language="javascript">';
+					echo 'alert("寄信成功!請至信箱收信更改密碼")';
+					echo '</script>';	
+				
+					usleep(1000000);
+					echo '<meta http-equiv="refresh" content="2;url=../index.html" />';
 					}
 
 
@@ -92,7 +98,13 @@
 				}
 				else
 				{
-					echo "ID and Email not match! fail!";
+					echo '<script language="javascript">';
+					echo 'alert("失敗!帳號跟信箱不符合")';
+					echo '</script>';	
+				
+					usleep(1000000);
+					echo '<meta http-equiv="refresh" content="2;url=../AccountManager-Sub-system/forget.html" />';
+					
 					return false;
 				}
 			}

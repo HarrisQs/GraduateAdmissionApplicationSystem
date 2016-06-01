@@ -10,7 +10,6 @@
 		{
 			$connectDB = new ConnectDB();
 			$teacherID = $_POST['TeacherID'];
-
 			$jsonResult = $connectDB->DB_SelectString("select School from account_data where account='$teacherID' ");
 			foreach($jsonResult as $key => $Value) //將json型態的array轉為php可用的array
 			{
@@ -23,7 +22,9 @@
 			{
 		    	$jsonResult[$key] = json_decode($Value, true); 
 			}
-			$this->currentApplication = $jsonResult;			
+			$this->currentApplication = $jsonResult;
+
+
 		}
 		public function Review()
 		{
@@ -58,16 +59,36 @@
 			$doreview = serialize($this);
 			$_SESSION['application_list'] = $alias;
 			$_SESSION['DoReview'] = $doreview;
+			echo "<br><table>
+					<tr>
+					<td>學校</td>
+					<td>系所</td>
+					<td>名字</td>
+				 </tr>";
+
 			for($index = 0; $index < count($this->currentApplication); $index++)
 			{
-				echo $this->currentApplication[$index]["School"];//學校
-				echo " ";
-				echo $this->currentApplication[$index]["Department"];//系所
-				echo " <a href='ShowApplication.php?index=$index'>";
+				$connectDB = new ConnectDB();
+				echo "<tr>
+						<td>";
+				$jsonResult = $connectDB->DB_SelectString("select School from account_data where account='".$this->currentApplication[$index]["account"]."'");
+				$jsonResult = json_decode($jsonResult[0]);
+				echo $jsonResult->School;
+				//echo $this->currentApplication[$index]["School"];//學校
+				echo "</td>
+						<td>";
+				$jsonResult = $connectDB->DB_SelectString("select Department from account_data where account='".$this->currentApplication[$index]["account"]."'");
+				$jsonResult = json_decode($jsonResult[0]);
+				echo $jsonResult->Department;
+				echo "</td>
+						<td>";
+				echo "<a href='ShowApplication.php?index=$index'>";
 				echo $this->currentApplication[$index]["Name"];
-				echo "</a>";//顯示學生名字及連結;
-				echo "<br>";
+				echo "</a>
+					   </td>
+					  </tr>";//顯示學生名字及連結;
 			}
+			echo "</table>";
 		}
 
 		private function ShowReviewFailed()//顯示沒通過審查的申請書
@@ -75,20 +96,39 @@
 			session_start();
 			$alias = serialize($this->currentApplication);
 			$_SESSION['application_list'] = $alias;
+			echo "<br><table>
+					<tr>
+					<td>學校</td>
+					<td>系所</td>
+					<td>名字</td>
+				 </tr>";
+
 			for($index = 0; $index < count($this->currentApplication); $index++)
 			{
-
-				if($this->currentApplication[$index]["Status"] == 3)//3代表沒通過
+				if($this->currentApplication[$index]["Status"] == 3)
 				{
-					echo $this->currentApplication[$index]["School"];//學校
-					echo " ";
-					echo $this->currentApplication[$index]["Department"];//系所
-					echo " <a href='ShowApplication.php?index=$index'>";
+					$connectDB = new ConnectDB();
+					echo "<tr>
+							<td>";
+					$jsonResult = $connectDB->DB_SelectString("select School from account_data where account='".$this->currentApplication[$index]["account"]."'");
+					$jsonResult = json_decode($jsonResult[0]);
+					echo $jsonResult->School;
+					//echo $this->currentApplication[$index]["School"];//學校
+					echo "</td>
+							<td>";
+					$jsonResult = $connectDB->DB_SelectString("select Department from account_data where account='".$this->currentApplication[$index]["account"]."'");
+					$jsonResult = json_decode($jsonResult[0]);
+					echo $jsonResult->Department;
+					echo "</td>
+							<td>";
+					echo "<a href='ShowApplication.php?index=$index'>";
 					echo $this->currentApplication[$index]["Name"];
-					echo "</a>";//顯示學生名字及連結;
-					echo "<br>";
+					echo "</a>
+						   </td>
+						  </tr>";//顯示學生名字及連結;
 				}
 			}
+			echo "</table>";
 		}
 
 		private function ShowNotReview()//顯示尚未審查的申請書
@@ -96,19 +136,39 @@
 			session_start();
 			$alias = serialize($this->currentApplication);
 			$_SESSION['application_list'] = $alias;
+			echo "<br><table>
+					<tr>
+					<td>學校</td>
+					<td>系所</td>
+					<td>名字</td>
+				 </tr>";
+
 			for($index = 0; $index < count($this->currentApplication); $index++)
 			{
-				if($this->currentApplication[$index]["Status"] == 1)//1代表尚未審查
+				if($this->currentApplication[$index]["Status"] == 1)
 				{
-					echo $this->currentApplication[$index]["School"];//學校
-					echo " ";
-					echo $this->currentApplication[$index]["Department"];//系所
-					echo " <a href='ShowApplication.php?index=$index'>";
+					$connectDB = new ConnectDB();
+					echo "<tr>
+							<td>";
+					$jsonResult = $connectDB->DB_SelectString("select School from account_data where account='".$this->currentApplication[$index]["account"]."'");
+					$jsonResult = json_decode($jsonResult[0]);
+					echo $jsonResult->School;
+					//echo $this->currentApplication[$index]["School"];//學校
+					echo "</td>
+							<td>";
+					$jsonResult = $connectDB->DB_SelectString("select Department from account_data where account='".$this->currentApplication[$index]["account"]."'");
+					$jsonResult = json_decode($jsonResult[0]);
+					echo $jsonResult->Department;
+					echo "</td>
+							<td>";
+					echo "<a href='ShowApplication.php?index=$index'>";
 					echo $this->currentApplication[$index]["Name"];
-					echo "</a>";//顯示學生名字及連結;
-					echo "<br>";
+					echo "</a>
+						   </td>
+						  </tr>";//顯示學生名字及連結;
 				}
 			}
+			echo "</table>";
 		}
 
 		private function ShowReviewSuccess()//顯示通過審查的申請書
@@ -116,19 +176,39 @@
 			session_start();
 			$alias = serialize($this->currentApplication);
 			$_SESSION['application_list'] = $alias;
+			echo "<br><table>
+					<tr>
+					<td>學校</td>
+					<td>系所</td>
+					<td>名字</td>
+				 </tr>";
+
 			for($index = 0; $index < count($this->currentApplication); $index++)
 			{
-				if($this->currentApplication[$index]["Status"] == 2)//2代表通過
+				if($this->currentApplication[$index]["Status"] == 2)
 				{
-					echo $this->currentApplication[$index]["School"];//學校
-					echo " ";
-					echo $this->currentApplication[$index]["Department"];//系所
-					echo " <a href='ShowApplication.php?index=$index'>";
+					$connectDB = new ConnectDB();
+					echo "<tr>
+							<td>";
+					$jsonResult = $connectDB->DB_SelectString("select School from account_data where account='".$this->currentApplication[$index]["account"]."'");
+					$jsonResult = json_decode($jsonResult[0]);
+					echo $jsonResult->School;
+					//echo $this->currentApplication[$index]["School"];//學校
+					echo "</td>
+							<td>";
+					$jsonResult = $connectDB->DB_SelectString("select Department from account_data where account='".$this->currentApplication[$index]["account"]."'");
+					$jsonResult = json_decode($jsonResult[0]);
+					echo $jsonResult->Department;
+					echo "</td>
+							<td>";
+					echo "<a href='ShowApplication.php?index=$index'>";
 					echo $this->currentApplication[$index]["Name"];
-					echo "</a>";//顯示學生名字及連結;
-					echo "<br>";
+					echo "</a>
+						   </td>
+						  </tr>";//顯示學生名字及連結;
 				}
 			}
+			echo "</table>";
 		}
 
 		private function ChangeApplicationState($state)//改變狀態
@@ -227,7 +307,7 @@
                     <div class="12u">
                         <section>
                             <header>
-                                <h2>for student</h2>
+                                <h2>for teacher</h2>
                                 <span class="byline">
                                 <?php
 							    $DoReview = new Review;
@@ -237,7 +317,9 @@
                                 </span>
                             </header>
                             <p>
-                            	<a href = "ReviewIndex.php">回到首頁</a>
+                            	<div style="width:300px;height:20px;margin:0 auto;">
+                            	<a class="button" href = "ReviewIndex.php">回到首頁</a>
+　								</div>
                             </p>
                         </section>
                     </div>

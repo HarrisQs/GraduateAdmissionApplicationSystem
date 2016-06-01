@@ -4,7 +4,11 @@
 //負責與資料庫連接的部分
 	class ConnectDB //連接資料庫
 	{
+<<<<<<< HEAD
 		private $db  = "20160601";
+=======
+		private $db  = "20160530";
+>>>>>>> 7035ce7d610e00cc5ae4468d40b4829d695a4b57
 		private $server="127.0.0.1";
 		private $stduser="root";
 		private $stdpass= "";

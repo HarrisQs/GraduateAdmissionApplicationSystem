@@ -68,9 +68,10 @@
                     <div class="12u">
                         <section>
                             <header>
-                                <h2>for student</h2>
+                                <h2>for teacher</h2>
                                 <span class="byline">
-                                  <form name="action" action="Review.php" method="post">
+                                    <br><br>
+                                  <form align="center" name="action" action="Review.php" method="post">
                                   <select name = "action">
                                   <option>請選擇要執行的項目</option>
                                   <option value="Show_All">顯示全部申請書</option>
@@ -79,7 +80,7 @@
                                   <option value="Show_Failed">顯示未通過的申請書</option>
                                 </select>
                                 <input type="hidden" name="TeacherID" value =<?php echo $TeacherID ?> >
-                                <br>
+                                <br><br>
                                 <input type = "submit" class="button" >
                               </form>
                                 </span>
