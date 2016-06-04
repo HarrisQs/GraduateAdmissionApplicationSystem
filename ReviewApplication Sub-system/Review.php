@@ -59,36 +59,44 @@
 			$doreview = serialize($this);
 			$_SESSION['application_list'] = $alias;
 			$_SESSION['DoReview'] = $doreview;
-			echo "<br><table>
-					<tr>
-					<td>學校</td>
-					<td>系所</td>
-					<td>名字</td>
-				 </tr>";
-
+			$piccount = 1;
+			$rowcount = 1;
+			echo"<div id=\"extra\">
+					<div class=\"container\">
+						<div class=\"row no-collapse-1\">";
 			for($index = 0; $index < count($this->currentApplication); $index++)
 			{
 				$connectDB = new ConnectDB();
-				echo "<tr>
-						<td>";
 				$jsonResult = $connectDB->DB_SelectString("select School from account_data where account='".$this->currentApplication[$index]["account"]."'");
 				$jsonResult = json_decode($jsonResult[0]);
-				echo $jsonResult->School;
+
+				echo "<section class=\"4u\"> <img style=\"border-radius:10px\" src=\"images/pic0".$piccount.".jpg\" alt=\"\">
+									<div class=\"box\" style =\"text-align: center\">
+										<p><div style=\"margin:0 auto;\">";
+				echo $jsonResult->School."&nbsp;&nbsp;&nbsp;&nbsp;";
 				//echo $this->currentApplication[$index]["School"];//學校
-				echo "</td>
-						<td>";
+
 				$jsonResult = $connectDB->DB_SelectString("select Department from account_data where account='".$this->currentApplication[$index]["account"]."'");
 				$jsonResult = json_decode($jsonResult[0]);
-				echo $jsonResult->Department;
-				echo "</td>
-						<td>";
-				echo "<a href='ShowApplication.php?index=$index'>";
-				echo $this->currentApplication[$index]["Name"];
-				echo "</a>
-					   </td>
-					  </tr>";//顯示學生名字及連結;
+				echo $jsonResult->Department."</div><br>";
+				echo $this->currentApplication[$index]["Name"]."</p>";
+				echo"<div style=\"width:300px;height:20px;margin:0 auto;\">";
+				echo "<a href=\"ShowApplication.php?index=$index\" class=\"button\">Read More";
+				echo "</div>";
+				echo "</a></section>";
+				$rowcount += 1;
+				$piccount += 1;
+				if($piccount>6)
+				{
+					$piccount-=6;
+				}
+				if($rowcount>3)
+				{
+					echo "</div>
+							<div class=\"row no-collapse-1\"><br><br>";
+					$rowcount = 1;
+				}
 			}
-			echo "</table>";
 		}
 
 		private function ShowReviewFailed()//顯示沒通過審查的申請書
@@ -96,39 +104,49 @@
 			session_start();
 			$alias = serialize($this->currentApplication);
 			$_SESSION['application_list'] = $alias;
-			echo "<br><table>
-					<tr>
-					<td>學校</td>
-					<td>系所</td>
-					<td>名字</td>
-				 </tr>";
+			$piccount = 1;
+			$rowcount = 1;
+			echo"<div id=\"extra\">
+					<div class=\"container\">
+						<div class=\"row no-collapse-1\">";
 
 			for($index = 0; $index < count($this->currentApplication); $index++)
 			{
 				if($this->currentApplication[$index]["Status"] == 3)
 				{
 					$connectDB = new ConnectDB();
-					echo "<tr>
-							<td>";
 					$jsonResult = $connectDB->DB_SelectString("select School from account_data where account='".$this->currentApplication[$index]["account"]."'");
 					$jsonResult = json_decode($jsonResult[0]);
-					echo $jsonResult->School;
+
+					echo "<section class=\"4u\"> <img style=\"border-radius:10px\" src=\"images/pic0".$piccount.".jpg\" alt=\"\">
+										<div class=\"box\" style =\"text-align: center\">
+											<p><div style=\"margin:0 auto;\">";
+					echo $jsonResult->School."&nbsp;&nbsp;&nbsp;&nbsp;";
 					//echo $this->currentApplication[$index]["School"];//學校
-					echo "</td>
-							<td>";
+
 					$jsonResult = $connectDB->DB_SelectString("select Department from account_data where account='".$this->currentApplication[$index]["account"]."'");
 					$jsonResult = json_decode($jsonResult[0]);
-					echo $jsonResult->Department;
-					echo "</td>
-							<td>";
-					echo "<a href='ShowApplication.php?index=$index'>";
-					echo $this->currentApplication[$index]["Name"];
-					echo "</a>
-						   </td>
-						  </tr>";//顯示學生名字及連結;
+					echo $jsonResult->Department."</div><br>";
+					echo $this->currentApplication[$index]["Name"]."</p>";
+					echo"<div style=\"width:300px;height:20px;margin:0 auto;\">";
+					echo "<a href=\"ShowApplication.php?index=$index\" class=\"button\">Read More";
+					echo "</div>";
+					echo "</a></section>";
+					$rowcount += 1;
+					$piccount += 1;
+					if($piccount>6)
+					{
+						$piccount-=6;
+					}
+					if($rowcount>3)
+					{
+						echo "</div>
+								<div class=\"row no-collapse-1\"><br><br>";
+						$rowcount = 1;
+					}
 				}
 			}
-			echo "</table>";
+
 		}
 
 		private function ShowNotReview()//顯示尚未審查的申請書
@@ -136,39 +154,50 @@
 			session_start();
 			$alias = serialize($this->currentApplication);
 			$_SESSION['application_list'] = $alias;
-			echo "<br><table>
-					<tr>
-					<td>學校</td>
-					<td>系所</td>
-					<td>名字</td>
-				 </tr>";
-
+			$piccount = 1;
+			$rowcount = 1;
+			echo"<div id=\"extra\">
+					<div class=\"container\">
+						<div class=\"row no-collapse-1\">";
 			for($index = 0; $index < count($this->currentApplication); $index++)
 			{
 				if($this->currentApplication[$index]["Status"] == 1)
 				{
 					$connectDB = new ConnectDB();
-					echo "<tr>
-							<td>";
 					$jsonResult = $connectDB->DB_SelectString("select School from account_data where account='".$this->currentApplication[$index]["account"]."'");
 					$jsonResult = json_decode($jsonResult[0]);
-					echo $jsonResult->School;
+
+					echo "<section class=\"4u\"> <img style=\"border-radius:10px\" src=\"images/pic0".$piccount.".jpg\" alt=\"\">
+										<div class=\"box\" style =\"text-align: center\">
+											<p><div style=\"margin:0 auto;\">";
+					echo $jsonResult->School."&nbsp;&nbsp;&nbsp;&nbsp;";
 					//echo $this->currentApplication[$index]["School"];//學校
-					echo "</td>
-							<td>";
+
 					$jsonResult = $connectDB->DB_SelectString("select Department from account_data where account='".$this->currentApplication[$index]["account"]."'");
 					$jsonResult = json_decode($jsonResult[0]);
-					echo $jsonResult->Department;
-					echo "</td>
-							<td>";
-					echo "<a href='ShowApplication.php?index=$index'>";
-					echo $this->currentApplication[$index]["Name"];
-					echo "</a>
-						   </td>
-						  </tr>";//顯示學生名字及連結;
+					echo $jsonResult->Department."</div><br>";
+					echo $this->currentApplication[$index]["Name"]."</p>";
+					echo"<div style=\"width:300px;height:20px;margin:0 auto;\">";
+					echo "<a href=\"ShowApplication.php?index=$index\" class=\"button\">Read More";
+					echo "</div>";
+					echo "</a></section>";
+					$rowcount += 1;
+					$piccount += 1;
+					if($piccount>6)
+					{
+						$piccount-=6;
+					}
+					if($rowcount>3)
+					{
+						echo "</div>
+								<div class=\"row no-collapse-1\"><br><br>";
+						$rowcount = 1;
+					}
+			
+
 				}
 			}
-			echo "</table>";
+
 		}
 
 		private function ShowReviewSuccess()//顯示通過審查的申請書
@@ -176,41 +205,51 @@
 			session_start();
 			$alias = serialize($this->currentApplication);
 			$_SESSION['application_list'] = $alias;
-			echo "<br><table>
-					<tr>
-					<td>學校</td>
-					<td>系所</td>
-					<td>名字</td>
-				 </tr>";
+			$piccount = 1;
+			$rowcount = 1;
+			echo"<div id=\"extra\">
+					<div class=\"container\">
+						<div class=\"row no-collapse-1\">";
 
 			for($index = 0; $index < count($this->currentApplication); $index++)
 			{
 				if($this->currentApplication[$index]["Status"] == 2)
 				{
 					$connectDB = new ConnectDB();
-					echo "<tr>
-							<td>";
 					$jsonResult = $connectDB->DB_SelectString("select School from account_data where account='".$this->currentApplication[$index]["account"]."'");
 					$jsonResult = json_decode($jsonResult[0]);
-					echo $jsonResult->School;
+
+					echo "<section class=\"4u\"> <img style=\"border-radius:10px\" src=\"images/pic0".$piccount.".jpg\" alt=\"\">
+										<div class=\"box\" style =\"text-align: center\">
+											<p><div style=\"margin:0 auto;\">";
+					echo $jsonResult->School."&nbsp;&nbsp;&nbsp;&nbsp;";
 					//echo $this->currentApplication[$index]["School"];//學校
-					echo "</td>
-							<td>";
+
 					$jsonResult = $connectDB->DB_SelectString("select Department from account_data where account='".$this->currentApplication[$index]["account"]."'");
 					$jsonResult = json_decode($jsonResult[0]);
-					echo $jsonResult->Department;
-					echo "</td>
-							<td>";
-					echo "<a href='ShowApplication.php?index=$index'>";
-					echo $this->currentApplication[$index]["Name"];
-					echo "</a>
-						   </td>
-						  </tr>";//顯示學生名字及連結;
+					echo $jsonResult->Department."</div><br>";
+					echo $this->currentApplication[$index]["Name"]."</p>";
+					echo"<div style=\"width:300px;height:20px;margin:0 auto;\">";
+					echo "<a href=\"ShowApplication.php?index=$index\" class=\"button\">Read More";
+					echo "</div>";
+					echo "</a></section>";
+					$rowcount += 1;
+					$piccount += 1;
+					if($piccount>6)
+					{
+						$piccount-=6;
+					}
+					if($rowcount>3)
+					{
+						echo "</div>
+								<div class=\"row no-collapse-1\"><br><br>";
+						$rowcount = 1;
+					}
+			
+
 				}
 			}
-			echo "</table>";
 		}
-
 		private function ChangeApplicationState($state)//改變狀態
 		{
 			switch ($state) 
@@ -262,7 +301,13 @@
             <script src="js/skel.min.js"></script>
             <script src="js/skel-panels.min.js"></script>
             <script src="js/init.js"></script>
+            <script src="js/jquery.min.js"></script>
+			<script src="js/jquery.dropotron.min.js"></script>
+			<script src="js/skel-layers.min.js"></script>
             <noscript>
+            	<link rel="stylesheet" href="css/skel.css" />
+				<link rel="stylesheet" href="css/style-wide.css" />
+
                 <link rel="stylesheet" href="css/skel-noscript.css" />
                 <link rel="stylesheet" href="css/style.css" />
                 <link rel="stylesheet" href="css/style-desktop.css" />
@@ -308,6 +353,7 @@
                         <section>
                             <header>
                                 <h2>for teacher</h2>
+                                <br>
                                 <span class="byline">
                                 <?php
 							    $DoReview = new Review;
@@ -317,9 +363,12 @@
                                 </span>
                             </header>
                             <p>
-                            	<div style="width:300px;height:20px;margin:0 auto;">
-                            	<a class="button" href = "ReviewIndex.php">回到首頁</a>
-　								</div>
+                            	<div style="text-align:center;">
+　									<div style="margin:0 auto;">
+										<a class="button" href = "ReviewIndex.php">回到首頁</a>
+									</div>
+								</div>
+
                             </p>
                         </section>
                     </div>
@@ -327,7 +376,7 @@
                 </div>
             </div>
             <!-- Main -->
-            
+          
         </div>
         <!-- /Main -->
         

@@ -28,7 +28,13 @@
             <script src="js/skel.min.js"></script>
             <script src="js/skel-panels.min.js"></script>
             <script src="js/init.js"></script>
+            <script src="js/jquery.min.js"></script>
+            <script src="js/jquery.dropotron.min.js"></script>
+            <script src="js/skel-layers.min.js"></script>
             <noscript>
+                <link rel="stylesheet" href="css/skel.css" />
+                <link rel="stylesheet" href="css/style-wide.css" />
+
                 <link rel="stylesheet" href="css/skel-noscript.css" />
                 <link rel="stylesheet" href="css/style.css" />
                 <link rel="stylesheet" href="css/style-desktop.css" />
@@ -74,43 +80,88 @@
                         <section>
                             <header>
                                 <h2>for teacher</h2>
+                                <br><br>
                                 <span class="byline">
-        <?php 
-        $jsonResult = $connectDB->DB_SelectString("select School from account_data where account='".$currentApplication[$index]["account"]."'");
-        $jsonResult = json_decode($jsonResult[0]);
-		echo "<br><p>學校: ".$jsonResult->School;
-        $jsonResult = $connectDB->DB_SelectString("select Department from account_data where account='".$currentApplication[$index]["account"]."'");
-        $jsonResult = json_decode($jsonResult[0]);
-		echo "<br><p>系所: ".$jsonResult->Department;
-		echo "<br><p>姓名: ";print_r($currentApplication[$index]["Name"]);
-		echo "<br><p>C&nbsp;&nbsp;V:  ";print_r($currentApplication[$index]["CV"]);
-		echo "<br><p>SOP: ";print_r($currentApplication[$index]["SOP"]);
-		echo "<br><p>Program Selection: ";print_r($currentApplication[$index]["ProgramSelection"]);
-	?>
-	<br><p>
-	<a target='_blank' href='Writemail.php'>寄信給推薦教授</a><br><p>
-	<a href='Download.php?object=1'>下載成績單</a><br><p>
-	<a href='Download.php?object=2'>下載推薦信</a>
-	
-	<?php 
-		echo "<br><p>申請書狀態: ";
-		switch($currentApplication[$index]["Status"])
-		{
-			case '0':
-				echo "尚未審查";
-				break;
-			case '1':
-				echo "尚未審查";
-				break;
-			case '2':
-				echo "通過";
-				break;
-			case '3':
-				echo "未通過";
-				break;
-		}	
-	?>
-	<br><br>
+                                <div id="extra">
+                                    <div class="container">
+                                         <div class="row no-collapse-1" style="text-align:center;">
+                                            <section class="4u"><p class="nocursorbutton">學校</p>
+                                                <div class="box" style="margin:0 auto;font-size: 35px;">
+                                                     <?php 
+                                                    $jsonResult = $connectDB->DB_SelectString("select School from account_data where account='".$currentApplication[$index]["account"]."'");
+                                                    $jsonResult = json_decode($jsonResult[0]);?>
+                                                    <p><br><?php echo $jsonResult->School ?></p>
+                                                 </div>
+                                             </section>
+                                             <section class="4u"><p class="nocursorbutton">系所</p>
+                                                <div class="box" style="margin:0 auto;font-size: 35px;">
+                                                     <?php 
+                                                     $jsonResult = $connectDB->DB_SelectString("select Department from account_data where account='".$currentApplication[$index]["account"]."'");
+                                                     $jsonResult = json_decode($jsonResult[0]);?>
+                                                    <p><br><?php echo $jsonResult->Department ?></p>
+                                                 </div>
+                                             </section>
+                                            <section class="4u"><p class="nocursorbutton">姓名</p>
+                                                <div class="box" style="margin:0 auto;font-size: 35px;">
+                                                    <p><br><?php print_r($currentApplication[$index]["Name"]); ?></p>
+                                                </div>
+                                            </section>
+                                            <section class="4u"><p class="nocursorbutton">CV</p>
+                                                <div class="box" style="margin:0 auto; font-size: 35px;">
+                                                    <p><br><?php print_r($currentApplication[$index]["CV"]); ?></p>
+                                                </div>
+                                            </section>
+                                            <section class="4u"><p class="nocursorbutton">SOP</p>
+                                                <div class="box" style="margin:0 auto;font-size: 35px;">
+                                                    <p><br><?php print_r($currentApplication[$index]["SOP"]); ?></p>
+                                                </div>
+                                            </section>
+                                            <section class="4u"><p class="nocursorbutton">Program Selection</p>
+                                                <div class="box" style="margin:0 auto;font-size: 35px;">
+                                                    <p><br><?php print_r($currentApplication[$index]["ProgramSelection"]); ?></p>
+                                                </div>
+                                            </section>
+                                            <br>
+                                            <section class="4u">
+                                                <div class="box" style="margin:0 auto;">
+                                                    <p><br><a class="button" target='_blank' href='Writemail.php'>寄信給推薦教授</a></p>
+                                                </div>
+                                            </section>   
+                                            <section class="4u">
+                                                <div class="box" style="margin:0 auto;">
+                                                    <p><br><a class="button" href='Download.php?object=1'>下載成績單</a></p>
+                                                </div>
+                                            </section>  
+                                            <section class="4u">
+                                                <div class="box" style="margin:0 auto;">
+                                                    <p><br><a class="button" href='Download.php?object=2'>下載推薦信</a></p>
+                                                </div>
+                                            </section>                                                                                      
+                                        </div>
+
+                                        <div style="text-align:center;font-size: 35px;">
+　                                           <div style="margin:0 auto;">申請書狀態：
+                                        	<?php 
+                                        		switch($currentApplication[$index]["Status"])
+                                        		{
+                                        			case '0':
+                                        				echo "尚未審查";
+                                        				break;
+                                        			case '1':
+                                        				echo "尚未審查";
+                                        				break;
+                                        			case '2':
+                                        				echo "通過";
+                                        				break;
+                                        			case '3':
+                                        				echo "未通過";
+                                        				break;
+                                        		}	
+                                        	?>
+                                            </div>
+                                        </div>
+                                        <div style="text-align:center;">
+　                                           <div style="margin:0 auto;">
 	<form name="action" action="SetState.php" method="post">
         <select name = "action">
           <option>請選擇審查結果</option>
@@ -121,10 +172,15 @@
         <br>
       <input class="button" type="submit" >
     </form>
-    <br>
-	                               <div style="width:300px;height:20px;margin:0 auto;">
-                                <a class="button" href = "ReviewIndex.php">回到首頁</a>
-　                               </div>
+    </div>
+    </div>
+
+                                <br><br><div style="text-align:center;">
+　                                   <div style="margin:0 auto;">
+                                        <a class="button" href = "ReviewIndex.php">回到首頁</a>
+                                    </div>
+                                </div>
+
                                 </span>
                             </header>
                             <p></p>
