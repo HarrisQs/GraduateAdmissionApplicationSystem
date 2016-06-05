@@ -4,7 +4,6 @@
 	include_once "../Repository Sub-system/LogDB.php";
     //$ID = $_GET["ID"];
     //$password = $_GET["password"];
-	
 	setcookie("ID",$_GET["ID"],time()+3600,"../");
 	setcookie("password",$_GET["password"],time()+3600);
 	
