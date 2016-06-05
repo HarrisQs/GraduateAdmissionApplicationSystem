@@ -2,9 +2,14 @@
 	include_once "../Repository Sub-system/AccountDB.php";
 	include_once "../Repository Sub-system/ConnectDB.php";
 	include_once "../Repository Sub-system/LogDB.php";
-    $ID = $_POST["ID"];
-    $password = $_POST["password"];
+    //$ID = $_GET["ID"];
+    //$password = $_GET["password"];
 	
+	setcookie("ID",$_GET["ID"],time()+3600,"../");
+	setcookie("password",$_GET["password"],time()+3600);
+	
+	$ID = $_COOKIE["ID"];
+	$password = $_COOKIE["password"];
 	$login = new LogIn();
 	$login->LoginSystem($ID,$password);
 	
@@ -42,5 +47,9 @@
 					echo '<meta http-equiv="refresh" content="2;url=../index.html" />';
 			
 		}
+		Public Function getaccount()
+        {
+             return $ID;
+        }
 	}
 ?>

@@ -90,7 +90,7 @@
 					$mail->Subject = mb_encode_mimeheader($Subject, "UTF-8"); //設定郵件標題   
 					$mail->Body = $Content; //設定郵件內容 
 					$mail->IsHTML(true); //設定郵件內容為HTML   
-					$mail->AddAddress("steven558877@gmail.com", "安安"); //設定收件者郵件及名稱   
+					$mail->AddAddress($TeacherEmail, "安安"); //設定收件者郵件及名稱   
 					if(!$mail->Send()) {   
 					echo "Mailer Error: " . $mail->ErrorInfo;   
 					} else {   
