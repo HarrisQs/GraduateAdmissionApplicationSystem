@@ -132,6 +132,8 @@
 
     <font class="about">上傳成績單</font>　　　<?php echo $userTranscript?><br><br>
 
+    <font class="about">審核狀態　</font>　　　<?php echo $userStatus?><br><br>
+
   </form>
   </div>
 
