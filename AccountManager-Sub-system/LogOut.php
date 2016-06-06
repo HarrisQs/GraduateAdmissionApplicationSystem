@@ -24,7 +24,7 @@
 				echo '<script language="javascript">';
 				echo 'alert("登出成功")';
 				echo '</script>';	
-				
+				setcookie("ID","",time()-3600,"../");
 				usleep(1000000);
 				echo '<meta http-equiv="refresh" content="2;url=../index.html" />';
 			}
