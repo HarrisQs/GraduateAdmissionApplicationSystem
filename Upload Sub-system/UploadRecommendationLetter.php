@@ -35,6 +35,7 @@
 				
 				echo '<script type="text/javascript">
 						alert("上傳成功!");
+						location.href="https://www.google.com.tw/";
 					</script>';
 			}
 		}
