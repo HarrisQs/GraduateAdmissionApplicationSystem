@@ -1,3 +1,8 @@
+<?php
+session_start();
+$account = $_SESSION['account'];
+?>
+
 <!DOCTYPE HTML>
 <!--
   Ex Machina by TEMPLATED
@@ -62,16 +67,14 @@
                                 <span class="byline">
                                 <br>
                                     
-	<form action="mailer.php" method="post">
-    <div style="width:300px;height:200px;margin:0 auto;">
+	<form action="mailer.php" method="post" style="text-align: center;">
       姓名：<input type="text" name="Name"><br><br>
 主旨：<input type="text" name="Subject"><br><br>
-內容：<textarea name="Content"></textarea><br><br>
-</div>
-      <div style="width:300px;height:20px;margin:0 auto;">
+內容：<textarea rows="8" cols="30" name="Content">學生的帳號是：<?php echo $account; ?>
+
+請由此網址上傳: http://steven558877.ddns.net/GraduateAdmissionApplicationSystem/Upload%20Sub-system/UploadUI.html</textarea><br><br>
 　                      
 	　<input class="button" type="submit" value="送出表單">
-             </div>
 	</form>
                                 </span>
                             </header>

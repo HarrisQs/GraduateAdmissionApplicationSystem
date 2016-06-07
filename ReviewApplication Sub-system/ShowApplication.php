@@ -7,8 +7,10 @@
 	$_SESSION['index'] = $index;
 	$currentApplication = unserialize($currentApplication);
     $_SESSION['TeacherEmail'] = $currentApplication[$index]["TeacherEmail"];
+    $_SESSION['account'] = $currentApplication[$index]["account"];
 	setcookie('Transcipts_name',$currentApplication[$index]["Transcipts"]);
 	setcookie('Letter_name',$currentApplication[$index]["RecommendationLetter"]);
+    
 ?>
 
 <!DOCTYPE HTML>
@@ -40,6 +42,89 @@
                 <link rel="stylesheet" href="css/style-desktop.css" />
             </noscript>
             </head>
+             <style type="text/css">
+             body {
+                  margin: 0;
+                  padding: 0 0 1em 0;
+                  font-size: 1em;
+                  line-height: 1.5em;
+                  color: #414142;
+                  font-family: Arial;
+                  background-color: #ededed;
+                }
+
+                .elem {
+                  border: solid  #6AC5AC 3px;
+                  position: relative;
+                }
+
+                .elem p {
+                  padding: 0 1em;
+                }
+
+                .elem-inline .label, .elem-inline .endlabel {
+                  position: static;
+                }
+
+                .label, .endlabel {
+                  position: absolute;
+                  background-color: #e95d3c;
+                  color: #414142;
+                  line-height: 1em;
+                }
+
+                .label {
+                  top: 0;
+                  left: 0;
+                  padding: 0 10px 10px 0;
+                  border-bottom-right-radius:10px;
+                }
+
+
+                .elem-green {
+                  border: solid #FDC72F 3px;
+                }
+                .elem-green > .label, .elem-green > .endlabel{
+                  background-color: #FDC72F;
+                }
+
+                .elem-red {
+                  border: solid #D64078 3px;
+                }
+                .elem-red > .label, .elem-red > .endlabel{
+                  color: white;
+                  background-color: #D64078;
+                }
+
+                .elem-orange {
+                  border: solid #96C02E 3px;
+                }
+                .elem-orange > .label, .elem-orange > .endlabel{
+                  background-color: #96C02E;
+                }
+
+                    .simple {
+                    width: 500px;
+                    margin: 20px auto;
+                    -webkit-box-sizing: border-box;
+                       -moz-box-sizing: border-box;
+                            box-sizing: border-box;
+                  }
+
+                  .fancy {
+                    margin: 20px auto;
+                    border: solid #e95d3c 10px;
+                    -webkit-box-sizing: border-box;
+                       -moz-box-sizing: border-box;
+                            box-sizing: border-box;
+                    border-radius:10px;
+                    padding-top:10px;
+                    word-wrap:break-word;
+                  }
+
+                 
+                   </style>
+
     <body class="no-sidebar">
         
         <!-- Header -->
@@ -54,7 +139,7 @@
                 <!-- Nav -->
                 <nav id="nav">
                     <ul>
-                        <li><a href="../AccountManager-Sub-system/index.html">sign out</a></li>
+                        <li><a href="../AccountManager-Sub-system/LogOut.php">sign out</a></li>
                         <li class="active"><a href="Reviewindex.php">Teacher</a></li>
                     </ul>
                 </nav>
@@ -85,43 +170,61 @@
                                 <div id="extra">
                                     <div class="container">
                                          <div class="row no-collapse-1" style="text-align:center;">
-                                            <section class="4u"><p class="nocursorbutton">學校</p>
-                                                <div class="box" style="margin:0 auto;font-size: 35px;">
-                                                     <?php 
-                                                    $jsonResult = $connectDB->DB_SelectString("select School from account_data where account='".$currentApplication[$index]["account"]."'");
-                                                    $jsonResult = json_decode($jsonResult[0]);?>
-                                                    <p><br><?php echo $jsonResult->School ?></p>
+                                            <section class="4u">
+                                                <div class="fancy elem">
+                                                    <span class="label">
+                                                        <font style="color:white;">學校</font></span>
+                                                        <p><br>
+                                                         <?php 
+                                                        $jsonResult = $connectDB->DB_SelectString("select School from account_data where account='".$currentApplication[$index]["account"]."'");
+                                                        $jsonResult = json_decode($jsonResult[0]);?>
+                                                        <?php echo $jsonResult->School ?>
+                                                        </p>
+                                                </div>
+                                             </section>
+                                             <section class="4u">
+                                                <div class="fancy elem">
+                                                    <span class="label">
+                                                        <font style="color:white;">系所</font></span>
+                                                        <p><br>
+                                                         <?php 
+                                                         $jsonResult = $connectDB->DB_SelectString("select Department from account_data where account='".$currentApplication[$index]["account"]."'");
+                                                         $jsonResult = json_decode($jsonResult[0]);?>
+                                                        <?php echo $jsonResult->Department ?></p>
                                                  </div>
                                              </section>
-                                             <section class="4u"><p class="nocursorbutton">系所</p>
-                                                <div class="box" style="margin:0 auto;font-size: 35px;">
-                                                     <?php 
-                                                     $jsonResult = $connectDB->DB_SelectString("select Department from account_data where account='".$currentApplication[$index]["account"]."'");
-                                                     $jsonResult = json_decode($jsonResult[0]);?>
-                                                    <p><br><?php echo $jsonResult->Department ?></p>
-                                                 </div>
-                                             </section>
-                                            <section class="4u"><p class="nocursorbutton">姓名</p>
-                                                <div class="box" style="margin:0 auto;font-size: 35px;">
-                                                    <p><br><?php print_r($currentApplication[$index]["Name"]); ?></p>
+                                            <section class="4u">
+                                                <div class="fancy elem">
+                                                    <span class="label">
+                                                        <font style="color:white;">名字</font></span>
+                                                        <p><br><?php print_r($currentApplication[$index]["Name"]); ?></p>
                                                 </div>
                                             </section>
-                                            <section class="4u"><p class="nocursorbutton">CV</p>
-                                                <div class="box" style="margin:0 auto; font-size: 35px;">
-                                                    <p><br><?php print_r($currentApplication[$index]["CV"]); ?></p>
+                                        </div>
+                                        <div class="row no-collapse-1" style="text-align:center;">
+                                            <section class="4u">
+                                                <div class="fancy elem">
+                                                    <span class="label">
+                                                        <font style="color:white;">CV</font></span>
+                                                        <p><br><?php print_r($currentApplication[$index]["CV"]); ?></p>
                                                 </div>
                                             </section>
-                                            <section class="4u"><p class="nocursorbutton">SOP</p>
-                                                <div class="box" style="margin:0 auto;font-size: 35px;">
-                                                    <p><br><?php print_r($currentApplication[$index]["SOP"]); ?></p>
+                                            <section class="4u">
+                                                <div class="fancy elem">
+                                                    <span class="label">
+                                                        <font style="color:white;">SOP</font></span>
+                                                        <p><br><?php print_r($currentApplication[$index]["SOP"]); ?></p>
                                                 </div>
                                             </section>
-                                            <section class="4u"><p class="nocursorbutton">Program Selection</p>
-                                                <div class="box" style="margin:0 auto;font-size: 35px;">
-                                                    <p><br><?php print_r($currentApplication[$index]["ProgramSelection"]); ?></p>
+                                            <section class="4u">
+                                                <div class="fancy elem">
+                                                    <span class="label">
+                                                        <font style="color:white;">ProgramSelection</font></span>
+                                                        <p><br><?php print_r($currentApplication[$index]["ProgramSelection"]); ?></p>
                                                 </div>
                                             </section>
-                                            <br>
+                                        </div>
+                                        <div class="row no-collapse-1" style="text-align:center;">
                                             <section class="4u">
                                                 <div class="box" style="margin:0 auto;">
                                                     <p><br><a class="button" target='_blank' href='Writemail.php'>寄信給推薦教授</a></p>
@@ -154,7 +257,7 @@
                                         				echo "通過";
                                         				break;
                                         			case '3':
-                                        				echo "未通過";
+                                        				echo "不通過";
                                         				break;
                                         		}	
                                         	?>
