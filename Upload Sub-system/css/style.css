@@ -14,7 +14,7 @@
 
 	body
 	{
-		background: #202020 url(images/img01.jpg) repeat;
+		background: #ffffff;
 	}
 
 	body,input,textarea,select
@@ -302,8 +302,9 @@
 			display: inline-block;
 			margin-top: 0.5em;
 			padding: 0.50em 1.5em;
+			/*background: #e95d3c;*/
 			background: #e95d3c;
-			border-radius: 6px;
+			border-radius: 60px;
 			text-decoration: none;
 			text-transform: uppercase;
 			font-size: 1.1em;
@@ -856,12 +857,12 @@
 	#page
 	{
 		position: relative;
-		background: #fff;
+		background: #000;
 	}
 
 	#main
 	{
-		border-top: 1px solid;
+		border-top: 10px solid;
 		border-color: rgba(0,0,0,.2);
 	}
 	
@@ -902,6 +903,7 @@
 	
 	#copyright
 	{
+		background: #000000;
 		position: relative;
 		padding: 3em 0em;
 		border-top: 1px solid #303030;
