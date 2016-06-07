@@ -14,7 +14,7 @@
 
 	body
 	{
-		background: #202020 url(images/img01.jpg) repeat;
+		background: #ffffff;
 	}
 
 	body,input,textarea,select
@@ -903,6 +903,7 @@
 	
 	#copyright
 	{
+		background: #000000;
 		position: relative;
 		padding: 3em 0em;
 		border-top: 1px solid #303030;

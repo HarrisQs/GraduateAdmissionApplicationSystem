@@ -80,7 +80,7 @@
         </div>
         <nav id="nav">
            <ul>
-              <li><a href="../AccountManager-Sub-system/index.html">sign out</a></li>
+              <li><a href="../AccountManager-Sub-system/LogOut.php">sign out</a></li>
               <li class="active"><a href="student.html">Student</a></li>
            </ul>
         </nav>

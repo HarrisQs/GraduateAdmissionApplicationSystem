@@ -59,6 +59,7 @@ $url = "http://google.com";
 			$Filetmp = $_FILES["transcripts"]["tmp_name"];
 			$Fileerr = $_FILES["transcripts"]["error"];
 
+
 			$this->SetAccount();
 			$this->CurrentBasicData = new CurrentBasicData();
 			$this->CurrentCV = new CurrentCV();
@@ -117,6 +118,10 @@ $url = "http://google.com";
 
 		private function SetTranscripts($Fname,$Ftype,$Fsize,$Ftmp,$Ferr, $currentAccount)//name,type,size,tmp,err,account
 		{
+			echo '<script type="text/javascript">
+					alert("上傳失敗!");
+					location.href="StaticPage.php";
+				</script>';
 			$this->CurrentTranscripts->SetTranscripts($Fname,$Ftype,$Fsize,$Ftmp,$Ferr,$this->currentaccount);
 		}
 

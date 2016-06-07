@@ -43,7 +43,10 @@
 			}
 			if($this->FILESIZE/1024 > 2000)	//File size can't big than 2MB
 			{
-				echo "File too big, Pleaes trh another file or modify it.";
+				echo '<script type="text/javascript">
+						alert("File size >2MB, Please try another small one!");
+						location.href="StaticPage.php";
+					</script>';
 				return false;
 			}
 
