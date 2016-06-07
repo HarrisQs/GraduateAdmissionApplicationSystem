@@ -302,9 +302,8 @@
 			display: inline-block;
 			margin-top: 0.5em;
 			padding: 0.50em 1.5em;
-			/*background: #e95d3c;*/
 			background: #e95d3c;
-			border-radius: 60px;
+			border-radius: 6px;
 			text-decoration: none;
 			text-transform: uppercase;
 			font-size: 1.1em;
@@ -857,12 +856,12 @@
 	#page
 	{
 		position: relative;
-		background: #000;
+		background: #fff;
 	}
 
 	#main
 	{
-		border-top: 10px solid;
+		border-top: 1px solid;
 		border-color: rgba(0,0,0,.2);
 	}
 	
