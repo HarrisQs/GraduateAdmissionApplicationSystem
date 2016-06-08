@@ -133,7 +133,7 @@
                 
                 <!-- Logo -->
                 <div id="logo" style="font-size:11px;">
-                    <h1><a href="#">Web-based graduate <br>admission application system</a></h1>
+                    <h1><a href="#">graduate admission application system</a></h1>
                 </div>
                 
                 <!-- Nav -->
@@ -265,9 +265,9 @@
                                         </div>
                                         <div style="text-align:center;">
 　                                           <div style="margin:0 auto;">
+    請選擇審查結果
 	<form name="action" action="SetState.php" method="post">
         <select name = "action">
-          <option>請選擇審查結果</option>
           <option value="Change_Status_Success">通過</option>
           <option value="Change_Stautus_Fail">不通過</option>
           <option value="Change_status_NotReview">尚未審查</option>

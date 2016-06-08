@@ -41,7 +41,7 @@
                 
                 <!-- Logo -->
                 <div id="logo" style="font-size:11px;">
-                    <h1><a href="#">Web-based graduate <br>admission application system</a></h1>
+                    <h1><a href="#">Graduate admission application system</a></h1>
                 </div>
                 
                 <!-- Nav -->
