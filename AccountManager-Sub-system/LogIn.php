@@ -4,11 +4,11 @@
 	include_once "../Repository Sub-system/LogDB.php";
     //$ID = $_GET["ID"];
     //$password = $_GET["password"];
-	setcookie("ID",$_GET["ID"],time()+3600,"../");
-	setcookie("password",$_GET["password"],time()+3600);
+	setcookie("ID",$_POST["ID"],time()+3600,"../");
+	//setcookie("password",$_POST["password"],time()+3600);
 	
-	$ID = $_COOKIE["ID"];
-	$password = $_COOKIE["password"];
+	$ID = $_POST["ID"];
+	$password = $_POST["password"];
 	$login = new LogIn();
 	$login->LoginSystem($ID,$password);
 	
