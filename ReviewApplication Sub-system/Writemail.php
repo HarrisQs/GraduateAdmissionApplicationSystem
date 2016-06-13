@@ -74,7 +74,7 @@ $account = $_SESSION['account'];
 
 請由此網址上傳: http://steven558877.ddns.net/GraduateAdmissionApplicationSystem/Upload%20Sub-system/UploadUI.html</textarea><br><br>
 　                      
-	　<input class="button" type="submit" value="送出表單">
+	　<input class="button" type="submit" value="送出信件">
 	</form>
                                 </span>
                             </header>
