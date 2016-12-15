@@ -12,6 +12,8 @@ it has following functionality：
 A document about `analysis` [Go to download it !](https://goo.gl/SxBOuJ)
 
 A document about `design` [Go to download it !](https://goo.gl/rPUy8f)
+
+A document about `test` [Go to download it !](https://goo.gl/LlAI0x)
 ## Code Need
 
 Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
